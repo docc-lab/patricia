@@ -323,6 +323,27 @@ class patricia_object_version_info:
 		self.session = session
 		self.creation_time = creation_time
 
+
+class patricia_object_property:
+        '''
+        Information about a specific version of a provenance object
+        '''
+
+        def __init__(self, object, object_version, key, value):
+                '''
+                Create an instance of this object
+                '''
+                self.object = object
+                self.object_version = object_version
+                self.key = key
+                self.value = value
+
+        def json(self):
+            return {'object': str(self.object),
+                    'version': self.object_version.version,
+                    'key': self.key,
+                    'value': self.value}
+
 #
 # Object & version
 #
@@ -359,9 +380,12 @@ class patricia_object_version:
                 '''
                 return "id:" + str(self.object) + ",version:" + str(self.version)
 
-        def json(self, prefix):
+        def json(self, prefix=""):
                 return {prefix + "_id": str(self.object),
                         prefix + "_version": str(self.version)}
+
+        def jsons(self):
+                return {"version": str(self.version)}
 
         def info(self):
                 '''
@@ -433,7 +457,6 @@ class patricia_ancestor:
                 '''
                 Create a json format
                 '''
-                print(self.type)
                 js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other_originator' : self.other.object.info().originator, 'other_name' : self.other.object.info().name,
                         'other_type' : self.other.object.info().type}
                 js.update(self.base.json("base"))
@@ -772,6 +795,14 @@ class patricia_object_info:
                 self.type = type
                 self.container = container
 
+        def json(self):
+            return {'name': self.name, 
+                    'type': self.type, 
+                    'originator': self.originator,
+                    'creation_time': self.creation_time,
+                    'version': self.version
+                    };
+
 
 class patricia_object:
         '''
@@ -853,20 +884,19 @@ class patricia_object:
 
                 return patricia_object_version(self, version)
 
-        def get_all_versions(self, v):
+        def get_all_versions(self, v=None):
                 '''
                 Get a cpl_object_version object for the specified version. Note that
                 the specified version number does not get validated until info() is
                 called.
                 '''
+                if v == None:
+                    v = self.version();
+
                 # query Cassandra to get the entry from object table with object id
                 query_get_object = "SELECT ts FROM flow WHERE id_c={} and ts<={} ALLOW FILTERING;".format(self.id, v)
                 query_res = _patricia_connection.session.execute(query_get_object);
                 
-                #print(v)
-                #print(datetime.datetime.fromtimestamp(v/1e3))
-                #print(query_get_object);
-
                 versions = []
                 versions.append(patricia_object_version(self, unix_time_millis(self.info().creation_time)))
 
@@ -885,7 +915,6 @@ class patricia_object:
                 # query Cassandra to get the entry from object table with object id
                 query_get_object = "SELECT * FROM flow WHERE id_c={} and ts<={} ALLOW FILTERING;".format(self.id, unix_time_millis(v))
                 query_res = _patricia_connection.session.execute(query_get_object);
-                #print(query_res._current_rows)
                 
                 if len(query_res._current_rows) <= 0:
                      # query Cassandra to get the entry from object table with object id
@@ -895,12 +924,14 @@ class patricia_object:
                         return 0;
 
                     object = query_res._current_rows[0];
-                    version = object.birthday;
+                    version = unix_time_millis(object.birthday);
                 else:
-                    versionings = sort([zip(row.id_c, row.ts) for row in query_res._current_rows], key=sortSecond) 
-                    version = versionings[-1].ts;
+                    versionings = [zip(str(row.id_c), str(row.ts)) for row in query_res._current_rows]
+                    versionings.sort(key = lambda x: x[1])
+                    version = versionings[-1][1];
+               
                 
-                return patricia_object_version(self, unix_time_millis(version))
+                return patricia_object_version(self, version)
 
 
         def info(self):
@@ -1153,22 +1184,23 @@ class patricia_object:
 
 
 	def properties(self, key=None, version=None):
-                if version == None:
+                if version is None:
                     version = self.version()
 
-                if key == None or key == '':
-                    select_all_query = """SELECT * from property where id={} and version={};""".format(self.id, version);
+                if key is None or key == '':
+                    select_all_query = """SELECT * from property where id={} and version={};""".format(self.id, version.version);
                 else:
-                    select_all_query = """SELECT * from property where id={} and key='{}' and version={};""".format(self.id, key, version);
+                    select_all_query = """SELECT * from property where id={} and key='{}' and version={};""".format(self.id, key, version.version);
                 
-                #print(select_all_query)
                 query_res = _patricia_connection.session.execute(select_all_query);
 
-                #print(query_res._current_rows)
                 l = []
                 if len(query_res._current_rows) <= 0:
                     return l;
                 
                 for row in query_res._current_rows:
-                    l.append([row.key, row.value])
+                    p = patricia_object_property(self, version,
+                                    row.key, row.value)
+                    l.append(p)
+                
                 return l

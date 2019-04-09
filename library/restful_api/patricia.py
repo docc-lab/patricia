@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, "/home/maniaa/core-provenance-library-1.01/bindings/python/CPL/build/release/")
-sys.path.insert(0, "/home/maniaa/patricia-library/bindings/python/Patricia")
+sys.path.insert(0, "/home/maniaa/patricia/library/core/")
 
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -97,16 +97,17 @@ def getProperty(originator, name, otype, key, version):
 
 def lookup(originator, name, otype):
     c = Patricia.patricia_connection()
+
     obj_ls = c.lookup_all(str(originator), str(name), str(otype))
-    
+
     objs = []
     for obj in obj_ls:
-        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'version':str(obj.version)})
-                
+        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(Patricia.unix_time_millis(obj.info().creation_time)), 'version':str(obj.version())})
+
     cpl_str = json.dumps(objs)
+    print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "");
-
 
 def lookupbyid(id):
     c = Patricia.patricia_connection()
@@ -116,9 +117,6 @@ def lookupbyid(id):
     print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "");
-
-
-
 
 def read(originator, name, otype):
     c = Patricia.patricia_connection()
@@ -134,3 +132,40 @@ def read(originator, name, otype):
     c.close()
     return cpl_str.replace("\"", "");
 
+
+def getAllObjectsJson():
+    c = Patricia.patricia_connection()
+
+    obj_ls = c.get_all_objects()
+    objs = []
+    for o in obj_ls:
+        obj = {'info' : {},
+                'versions': [],
+                'properties': [],
+                'ancestors': [],
+                'descendant': []};
+
+        obj['info'] = o.json();
+
+        obj_versions = o.object.get_all_versions();
+        for v in obj_versions:
+            obj['versions'].append(v.jsons())
+            obj_properties = o.object.properties(version=v);
+            for p in obj_properties:
+                obj['properties'].append(p.json())
+
+        obj_ancestors = o.object.ancestry(direction = Patricia.D_ANCESTORS);
+        for a in obj_ancestors:
+            obj['ancestors'].append(a.json())
+
+        obj_decendant = o.object.ancestry(direction = Patricia.D_ANCESTORS);
+        for d in obj_decendant:
+            obj['descendant'].append(d.json())
+
+        objs.append(obj)
+
+
+    cpl_str = json.dumps(objs, indent=4)
+    print(cpl_str)
+    c.close()
+    return cpl_str.replace("\"", "");
