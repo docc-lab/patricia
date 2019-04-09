@@ -1,0 +1,240 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /patricia/ancestry:
+    get:
+      operationId: patricia.ancestry
+      tags:
+        - cpler
+      summary: Read the entire list of people
+      description: Read the list of people
+      parameters:
+        - name: originator
+          in: query
+          type: string
+          description: originator for cpl query.
+          required: false
+        - name: name
+          in: query
+          type: string
+          description: name of CPL object
+          required: false
+        - name: otype
+          in: query
+          type: string
+          description: type of CPL object
+          required: false
+        - name: version
+          in: query
+          type: string
+          description: type of CPL object
+          required: false
+        - name: direction
+          in: query
+          type: string
+          description: type of CPL object
+          required: false
+        - name: flags
+          in: query
+          type: string
+          description: type of CPL object
+          required: false       
+      responses:
+        200:
+          description: Successfully read cpl list operation
+          schema:
+            type: array
+            items:
+              properties:
+                originator:
+                  type: string
+                name:
+                  type: string
+                type:
+                  type: string
+  /patricia/lookupbyid:
+    get:
+      operationId: patricia.lookupbyid
+      tags:
+        - cpler
+      summary: Read the entire list of people
+      description: Read the list of people
+      parameters:
+        - name: id
+          in: query
+          type: string
+          description: originator for cpl query.
+          required: false
+      responses:
+        200:
+          description: Successfully read cpl list operation
+          schema:
+            type: array
+            items:
+              properties:
+                key:
+                  type: string
+  
+  /patricia/property:
+    get:
+      operationId: patricia.getProperty
+      tags:
+        - cpler
+      summary: Read the entire list of people
+      description: Read the list of people
+      parameters:
+        - name: originator
+          in: query
+          type: string
+          description: originator for cpl query.
+          required: false
+        - name: name
+          in: query
+          type: string
+          description: name of CPL object
+          required: false
+        - name: otype
+          in: query
+          type: string
+          description: type of CPL object
+          required: false
+        - name: version
+          in: query
+          type: string
+          description: version of Patricia object
+          required: false
+        - name: key
+          in: query
+          type: string
+          description: type of CPL object
+          required: false
+          default: None
+      responses:
+        200:
+          description: Successfully read cpl list operation
+          schema:
+            type: array
+            items:
+              properties:
+                key:
+                  type: string
+
+
+  /patricia/lineage:
+    get:
+      operationId: patricia.getAllVersions
+      tags:
+        - Patricia
+      summary: Read the entire lineage of the specific version
+      description: Read the list of people
+      parameters:
+        - name: originator
+          in: query
+          type: string
+          description: originator for patricia object
+          required: false
+        - name: name
+          in: query
+          type: string
+          description: name of Patricia object
+          required: false
+        - name: otype
+          in: query
+          type: string
+          description: type of Patricia object
+          required: false
+        - name: version
+          in: query
+          type: string
+          description: version of Patricia object
+          required: false
+      responses:
+        200:
+          description: Successfully read cpl list operation
+          schema:
+            type: array
+            items:
+              properties:
+                version:
+                  type: string
+
+                
+  /patricia/version:
+    get:
+      operationId: patricia.getVersion
+      tags:
+        - cpler
+      summary: Read the entire list of people
+      description: Read the list of people
+      parameters:
+        - name: originator
+          in: query
+          type: string
+          description: originator for cpl query.
+          required: false
+        - name: name
+          in: query
+          type: string
+          description: name of CPL object
+          required: false
+        - name: otype
+          in: query
+          type: string
+          description: type of CPL object
+          required: false
+      responses:
+        200:
+          description: Successfully read cpl list operation
+          schema:
+            type: array
+            items:
+              properties:
+                version:
+                  type: string
+  /patricia:
+    get:
+      operationId: patricia.read
+      tags:
+        - cpler
+      summary: Read the entire list of people
+      description: Read the list of people
+      parameters:
+        - name: originator
+          in: query
+          type: string
+          description: originator for cpl query.
+          required: false
+        - name: name
+          in: query
+          type: string
+          description: name of CPL object
+          required: false
+        - name: otype
+          in: query
+          type: string
+          description: type of CPL object
+          required: false
+      responses:
+        200:
+          description: Successfully read cpl list operation
+          schema:
+            type: array
+            items:
+              properties:
+                originator:
+                  type: string
+                name:
+                  type: string
+                type:
+                  type: string      
