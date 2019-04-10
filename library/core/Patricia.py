@@ -431,6 +431,7 @@ class patricia_ancestor:
 		self.descendant = patricia_object_version(patricia_object(did), dversion)
 		self.type = type
 
+
 		if direction == D_ANCESTORS:
 			self.base  = self.descendant
 			self.other = self.ancestor
@@ -461,6 +462,22 @@ class patricia_ancestor:
                         'other_type' : self.other.object.info().type}
                 js.update(self.base.json("base"))
                 js.update(self.other.json("other"))
+
+                arrow = ' -- '
+                if self.other == self.ancestor:
+                        arrow = ' --> '
+                        js['direction'] = 'ancestor'
+                else:
+                        arrow = ' <-- '
+                        js['direction'] = 'descendant'
+                return js;
+
+        def jsons(self):
+                '''
+                Create a json format
+                '''
+                js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other': {'originator' : self.other.object.info().originator, 'name' : self.other.object.info().name,
+                    'type' : self.other.object.info().type, 'version': str(self.other.version)}, 'base' : {'version': str(self.base.version)}}
 
                 arrow = ' -- '
                 if self.other == self.ancestor:
@@ -926,11 +943,10 @@ class patricia_object:
                     object = query_res._current_rows[0];
                     version = unix_time_millis(object.birthday);
                 else:
-                    versionings = [zip(str(row.id_c), str(row.ts)) for row in query_res._current_rows]
+                    versionings = [[row.id_c, row.ts] for row in query_res._current_rows]
                     versionings.sort(key = lambda x: x[1])
-                    version = versionings[-1][1];
+                    version = unix_time_millis(versionings[-1][1]);
                
-                
                 return patricia_object_version(self, version)
 
 
@@ -1148,7 +1164,6 @@ class patricia_object:
                              self.id, descendant_version,
                              _type, direction)
                         l.append(a)
-                        
                         select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} and ts<{} ALLOW FILTERING;""".format(self.id, version, unix_time_millis(descendant_version));
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                     else:

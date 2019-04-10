@@ -156,11 +156,11 @@ def getAllObjectsJson():
 
         obj_ancestors = o.object.ancestry(direction = Patricia.D_ANCESTORS);
         for a in obj_ancestors:
-            obj['ancestors'].append(a.json())
+            obj['ancestors'].append(a.jsons())
 
-        obj_decendant = o.object.ancestry(direction = Patricia.D_ANCESTORS);
+        obj_decendant = o.object.ancestry(direction = Patricia.D_DESCENDANTS);
         for d in obj_decendant:
-            obj['descendant'].append(d.json())
+            obj['descendant'].append(d.jsons())
 
         objs.append(obj)
 
