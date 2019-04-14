@@ -547,7 +547,7 @@ class patricia_connection:
                 self.closed = True
 
 	def __create_or_lookup_cpl_object(self, originator,
-		     name, type, create=None, container=None):
+		     name, type, creation_time=None, create=None, container=None):
 		'''
 		Create or lookup a Patricia object
 
@@ -563,6 +563,11 @@ class patricia_connection:
 				Id of container into which to place this object.
 				Only applies to create
 		'''
+                if creation_time is None:
+                        birthday = unix_time_millis(datetime.datetime.now());
+                else:
+                        birthday = unix_time_millis(creation_time);
+
 		if container is None:
 			container_id = 'null'
 		else:
@@ -571,15 +576,18 @@ class patricia_connection:
                 idp = uuid.uuid1();
                 
 		if create == None:
-                    query = """INSERT INTO object (id,container,originator,name,type,birthday) VALUES ({}, {}, '{}', '{}', '{}',{}) IF NOT EXISTS; """.format(str(idp), str(container_id), originator, name, type, unix_time_millis(datetime.datetime.now()));
+                    query = """INSERT INTO object (id,container,originator,name,type,birthday) VALUES ({}, {}, '{}', '{}', '{}',{}) IF NOT EXISTS; """.format(str(idp), str(container_id), originator, name, type, birthday);
+                    print(query)
                     ret = self.session.execute(query);
                     if ret._current_rows[0].applied == False:
                         idp = ret._current_rows[0].id
 		elif create:
-                    query = """INSERT INTO object (id,container,originator,name,type,birthday) VALUES ({}, {}, '{}', '{}', '{}', {});""".format(str(idp), str(container_id), originator, name, type, unix_time_millis(datetime.datetime.now()));
+                    query = """INSERT INTO object (id,container,originator,name,type,birthday) VALUES ({}, {}, '{}', '{}', '{}', {});""".format(str(idp), str(container_id), originator, name, type, birthday);
+                    print(query)
                     ret = self.session.execute(query);
 		else:
                     query = """SELECT * from object where originator='{}' and name='{}' and type='{}';""".format(originator, name, type);
+                    print(query)
                     ret = self.session.execute(query);
                     if len(ret._current_rows) > 0:
                         idp = ret._current_rows[0].id
@@ -631,11 +639,11 @@ class patricia_connection:
 				create=None, container=container)
 
 
-	def create_object(self, originator, name, type, container=None):
+	def create_object(self, originator, name, type, creation_time=None, container=None):
 		'''
 		Create object, returns None if object already exists.
 		'''
-		return self.__create_or_lookup_cpl_object(originator, name, type,
+		return self.__create_or_lookup_cpl_object(originator, name, type, creation_time=creation_time,
 				create=True, container=container)
 
 
