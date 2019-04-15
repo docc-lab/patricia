@@ -29,7 +29,7 @@ config = Config(
             },
             'logging': True,
         },  
-        service_name='pt10',
+        service_name='pt11',
         validate=True,)
     
 # this call also sets opentracing.tracer
@@ -62,9 +62,8 @@ with tracer.start_span(obj1_name) as span:
         time.sleep(1)
     
         fh1.read();
-        span2.log_kv({'type': obj2_type, 'name': obj2_name, 'method': 'write'})
+        span2.log_kv({'type': obj2_type, 'name': obj2_name, 'method': 'read'})
         time.sleep(1)
-
 
         fh2 = tempfile.NamedTemporaryFile()
         obj4_name = fh2.name
@@ -92,9 +91,9 @@ with tracer.start_span(obj1_name) as span:
     print '----- Lookup Tests -----'
     print
 
-    fh1.read()
+    fh1.write("I think your paper is accepted")
     print ('Looking up object name: ' + obj2_name + ' type: ' + obj2_type)
-    span.log_kv({'type': obj2_type, 'name': obj2_name, 'method': 'read'})
+    span.log_kv({'type': obj2_type, 'name': obj2_name, 'method': 'update'})
     time.sleep(1)
 
     fh2.read()

@@ -113,7 +113,7 @@ def lookupbyid(id):
     c = Patricia.patricia_connection()
     obj = c.lookup_by_id(str(id))
     obj_info = obj.info();
-    cpl_str = json.dumps([{'originator': obj_info.originator, 'name' : obj_info.name, 'type' : obj_info.type, 'id': str(obj.id), 'ct': str(Patricia.unix_time_millis(obj.info().creation_time)), 'version':str(obj.version())}]);
+    cpl_str = json.dumps([{'originator': obj_info.originator, 'name' : obj_info.name, 'type' : obj_info.type, 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'version':str(obj.version())}]);
     print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "");
@@ -125,7 +125,7 @@ def read(originator, name, otype):
     
     objs = []
     for obj in obj_ls:
-        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(Patricia.unix_time_millis(obj.info().creation_time)), 'version':str(obj.version())})
+        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'version':str(obj.version())})
                 
     cpl_str = json.dumps(objs)
     print(cpl_str) 
@@ -133,7 +133,7 @@ def read(originator, name, otype):
     return cpl_str.replace("\"", "");
 
 
-def getAllObjectsJson():
+def getAllObjectsJson(dump_file_path):
     c = Patricia.patricia_connection()
 
     obj_ls = c.get_all_objects()
@@ -163,9 +163,9 @@ def getAllObjectsJson():
             obj['descendant'].append(d.jsons())
 
         objs.append(obj)
+        
+    with open(dump_file_path, 'w') as outfile:
+        json.dump(objs, outfile, indent=4)
 
-
-    cpl_str = json.dumps(objs, indent=4)
-    print(cpl_str)
     c.close()
-    return cpl_str.replace("\"", "");
+    return
