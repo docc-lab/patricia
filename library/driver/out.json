@@ -1,566 +1,229 @@
 [
     {
         "info": {
-            "originator": "pt11", 
+            "originator": 0, 
+            "name": "pt11", 
+            "timestamp": 1555348476832672, 
             "creation_time": 1555348470822829, 
-            "version": 1555337367611, 
-            "type": "file", 
-            "name": "/tmp/tmpDc6F6a"
+            "death_time": null, 
+            "type": "/tmp/tmpDc6F6a"
         }, 
-        "descendant": [
+        "timestamps": [
             {
-                "direction": "descendant", 
-                "other": {
-                    "originator": "pt11", 
-                    "version": "1555348470822829", 
-                    "type": "proc", 
-                    "name": "Process A"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367611"
-                }
+                "timestamp": "1555348470822829"
+            }, 
+            {
+                "timestamp": "1555348472825194"
+            }, 
+            {
+                "timestamp": "1555348476832672"
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555337367611", 
-                    "type": "file", 
-                    "name": "/tmp/tmpDc6F6a"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367611"
-                }
-            }, 
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt11", 
-                    "version": "1555337367595", 
-                    "type": "file", 
-                    "name": "/tmp/tmpDc6F6a"
+                    "timestamp": "1555348476832672", 
+                    "id": "39fa8289-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data translation", 
                 "base": {
-                    "version": "1555337367611"
+                    "timestamp": "1555348476832672"
+                }
+            }, 
+            {
+                "direction": "ancestor", 
+                "other": {
+                    "timestamp": "1555348472825194", 
+                    "id": "39fa8289-608e-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": "1555348476832672"
                 }
             }
         ], 
         "properties": [], 
-        "versions": [
-            {
-                "version": "1555348470822829"
-            }, 
-            {
-                "version": "1555337367595"
-            }, 
-            {
-                "version": "1555337367611"
-            }
-        ]
+        "descendant": []
     }, 
     {
         "info": {
-            "originator": "pt11", 
+            "originator": 0, 
+            "name": "pt11", 
+            "timestamp": 1555348477833906, 
             "creation_time": 1555348477833906, 
-            "version": 1555337367618, 
-            "type": "file", 
-            "name": "/tmp/tmpiy7NH6"
+            "death_time": null, 
+            "type": "/tmp/tmpiy7NH6"
         }, 
-        "descendant": [
+        "timestamps": [
             {
-                "direction": "descendant", 
-                "other": {
-                    "originator": "pt11", 
-                    "version": "1555348473826569", 
-                    "type": "proc", 
-                    "name": "Process B"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367618"
-                }
+                "timestamp": "1555348477833906"
+            }, 
+            {
+                "timestamp": "1555348474827774"
+            }, 
+            {
+                "timestamp": "1555348477833906"
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555337367618", 
-                    "type": "file", 
-                    "name": "/tmp/tmpiy7NH6"
+                    "timestamp": "1555348477833906", 
+                    "id": "39fa828c-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "version": "1555337367618"
+                    "timestamp": "1555348477833906"
                 }
             }, 
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555337367598", 
-                    "type": "file", 
-                    "name": "/tmp/tmpiy7NH6"
+                    "timestamp": "1555348474827774", 
+                    "id": "39fa828c-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "version": "1555337367618"
+                    "timestamp": "1555348477833906"
                 }
             }
         ], 
         "properties": [], 
-        "versions": [
-            {
-                "version": "1555348477833906"
-            }, 
-            {
-                "version": "1555337367598"
-            }, 
-            {
-                "version": "1555337367618"
-            }
-        ]
+        "descendant": []
     }, 
     {
         "info": {
-            "originator": "pt11", 
+            "originator": 0, 
+            "name": "pt11", 
+            "timestamp": 1555348478835184, 
             "creation_time": 1555348475830794, 
-            "version": 1555337367601, 
-            "type": "file", 
-            "name": "/tmp/tmpzvuZWE"
+            "death_time": null, 
+            "type": "/tmp/tmpzvuZWE"
         }, 
-        "descendant": [
+        "timestamps": [
             {
-                "direction": "descendant", 
-                "other": {
-                    "originator": "pt11", 
-                    "version": "1555348475830794", 
-                    "type": "proc", 
-                    "name": "Process A"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367601"
-                }
+                "timestamp": "1555348475830794"
+            }, 
+            {
+                "timestamp": "1555348478835184"
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555337367601", 
-                    "type": "file", 
-                    "name": "/tmp/tmpzvuZWE"
+                    "timestamp": "1555348478835184", 
+                    "id": "39fa828a-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "version": "1555337367601"
+                    "timestamp": "1555348478835184"
                 }
             }
         ], 
         "properties": [], 
-        "versions": [
-            {
-                "version": "1555348475830794"
-            }, 
-            {
-                "version": "1555337367601"
-            }
-        ]
+        "descendant": []
     }, 
     {
         "info": {
-            "originator": "pt11", 
+            "originator": 1555348479836324, 
+            "name": "pt11", 
+            "timestamp": 1555348479836324, 
             "creation_time": 1555348469818745, 
-            "version": 1555348479836324, 
-            "type": "proc", 
-            "name": "Process A"
+            "death_time": null, 
+            "type": "Process A"
         }, 
-        "descendant": [], 
+        "timestamps": [
+            {
+                "timestamp": "1555348469818745"
+            }, 
+            {
+                "timestamp": "1555348479836324"
+            }, 
+            {
+                "timestamp": "1555348470822829"
+            }, 
+            {
+                "timestamp": "1555348475830794"
+            }
+        ], 
         "ancestors": [
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555348479836324", 
-                    "type": "proc", 
-                    "name": "Process A"
+                    "timestamp": "1555348479836324", 
+                    "id": "39fa8288-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "version": "1555348479836324"
+                    "timestamp": "1555348479836324"
                 }
             }, 
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555348475830794", 
-                    "type": "proc", 
-                    "name": "Process A"
+                    "timestamp": "1555348475830794", 
+                    "id": "39fa8288-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "version": "1555348479836324"
+                    "timestamp": "1555348479836324"
                 }
             }
         ], 
         "properties": [], 
-        "versions": [
-            {
-                "version": "1555348469818745"
-            }, 
-            {
-                "version": "1555348479836324"
-            }, 
-            {
-                "version": "1555348470822829"
-            }, 
-            {
-                "version": "1555348475830794"
-            }
-        ]
+        "descendant": []
     }, 
     {
         "info": {
-            "originator": "pt11", 
+            "originator": 1555348475828915, 
+            "name": "pt11", 
+            "timestamp": 1555348475828915, 
             "creation_time": 1555348471824032, 
-            "version": 1555348475828915, 
-            "type": "proc", 
-            "name": "Process B"
+            "death_time": null, 
+            "type": "Process B"
         }, 
-        "descendant": [], 
+        "timestamps": [
+            {
+                "timestamp": "1555348471824032"
+            }, 
+            {
+                "timestamp": "1555348471824032"
+            }, 
+            {
+                "timestamp": "1555348475828915"
+            }, 
+            {
+                "timestamp": "1555348473826569"
+            }
+        ], 
         "ancestors": [
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555348475828915", 
-                    "type": "proc", 
-                    "name": "Process B"
+                    "timestamp": "1555348475828915", 
+                    "id": "39fa828e-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "version": "1555348475828915"
+                    "timestamp": "1555348475828915"
                 }
             }, 
             {
                 "direction": "ancestor", 
                 "other": {
-                    "originator": "pt11", 
-                    "version": "1555348473826569", 
-                    "type": "proc", 
-                    "name": "Process B"
+                    "timestamp": "1555348473826569", 
+                    "id": "39fa828e-608e-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "version": "1555348475828915"
+                    "timestamp": "1555348475828915"
                 }
             }
         ], 
         "properties": [], 
-        "versions": [
-            {
-                "version": "1555348471824032"
-            }, 
-            {
-                "version": "1555348473826569"
-            }, 
-            {
-                "version": "1555348471824032"
-            }, 
-            {
-                "version": "1555348475828915"
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "pt10", 
-            "creation_time": 1555270547067263, 
-            "version": 1555337367658, 
-            "type": "file", 
-            "name": "/tmp/tmpPWJUMU"
-        }, 
-        "descendant": [
-            {
-                "direction": "descendant", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270543060236", 
-                    "type": "proc", 
-                    "name": "Process B"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367658"
-                }
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555337367658", 
-                    "type": "file", 
-                    "name": "/tmp/tmpPWJUMU"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367658"
-                }
-            }, 
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555337367638", 
-                    "type": "file", 
-                    "name": "/tmp/tmpPWJUMU"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367658"
-                }
-            }
-        ], 
-        "properties": [], 
-        "versions": [
-            {
-                "version": "1555270547067263"
-            }, 
-            {
-                "version": "1555337367638"
-            }, 
-            {
-                "version": "1555337367658"
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "pt10", 
-            "creation_time": 1555270545064523, 
-            "version": 1555337367641, 
-            "type": "file", 
-            "name": "/tmp/tmpUy3DNn"
-        }, 
-        "descendant": [
-            {
-                "direction": "descendant", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270545064523", 
-                    "type": "proc", 
-                    "name": "Process A"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367641"
-                }
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555337367641", 
-                    "type": "file", 
-                    "name": "/tmp/tmpUy3DNn"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367641"
-                }
-            }
-        ], 
-        "properties": [], 
-        "versions": [
-            {
-                "version": "1555270545064523"
-            }, 
-            {
-                "version": "1555337367641"
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "pt10", 
-            "creation_time": 1555270540056447, 
-            "version": 1555337367634, 
-            "type": "file", 
-            "name": "/tmp/tmprWBRGg"
-        }, 
-        "descendant": [
-            {
-                "direction": "descendant", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270540056447", 
-                    "type": "proc", 
-                    "name": "Process A"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367634"
-                }
-            }, 
-            {
-                "direction": "descendant", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270542058876", 
-                    "type": "proc", 
-                    "name": "Process B"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367634"
-                }
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555337367634", 
-                    "type": "file", 
-                    "name": "/tmp/tmprWBRGg"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555337367634"
-                }
-            }
-        ], 
-        "properties": [], 
-        "versions": [
-            {
-                "version": "1555270540056447"
-            }, 
-            {
-                "version": "1555337367634"
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "pt10", 
-            "creation_time": 1555270539051604, 
-            "version": 1555270549069776, 
-            "type": "proc", 
-            "name": "Process A"
-        }, 
-        "descendant": [], 
-        "ancestors": [
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270549069776", 
-                    "type": "proc", 
-                    "name": "Process A"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "version": "1555270549069776"
-                }
-            }, 
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270545064523", 
-                    "type": "proc", 
-                    "name": "Process A"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555270549069776"
-                }
-            }
-        ], 
-        "properties": [], 
-        "versions": [
-            {
-                "version": "1555270539051604"
-            }, 
-            {
-                "version": "1555270540056447"
-            }, 
-            {
-                "version": "1555270545064523"
-            }, 
-            {
-                "version": "1555270549069776"
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "pt10", 
-            "creation_time": 1555270541057696, 
-            "version": 1555270545062665, 
-            "type": "proc", 
-            "name": "Process B"
-        }, 
-        "descendant": [], 
-        "ancestors": [
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270545062665", 
-                    "type": "proc", 
-                    "name": "Process B"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "version": "1555270545062665"
-                }
-            }, 
-            {
-                "direction": "ancestor", 
-                "other": {
-                    "originator": "pt10", 
-                    "version": "1555270543060236", 
-                    "type": "proc", 
-                    "name": "Process B"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "version": "1555270545062665"
-                }
-            }
-        ], 
-        "properties": [], 
-        "versions": [
-            {
-                "version": "1555270541057696"
-            }, 
-            {
-                "version": "1555270542058876"
-            }, 
-            {
-                "version": "1555270543060236"
-            }, 
-            {
-                "version": "1555270541057696"
-            }, 
-            {
-                "version": "1555270545062665"
-            }
-        ]
+        "descendant": []
     }
 ]

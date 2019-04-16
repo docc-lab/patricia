@@ -385,7 +385,7 @@ class patricia_object_version:
                         prefix + "_version": str(self.version)}
 
         def jsons(self):
-                return {"version": str(self.version)}
+                return {"timestamp": str(self.version)}
 
         def info(self):
                 '''
@@ -470,12 +470,15 @@ class patricia_ancestor:
                         js['direction'] = 'descendant'
                 return js;
 
-        def jsons(self):
+        def jsons(self, verbose=False):
                 '''
                 Create a json format
                 '''
-                js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other': {'originator' : self.other.object.info().originator, 'name' : self.other.object.info().name,
-                    'type' : self.other.object.info().type, 'version': str(self.other.version)}, 'base' : {'version': str(self.base.version)}}
+                if verbose:
+                    js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other': {'originator' : self.other.object.info().originator, 'name' : self.other.object.info().name,
+                        'type' : self.other.object.info().type, 'version': str(self.other.version)}, 'base' : {'version': str(self.base.version)}}
+                else:
+                    js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other': {'id': str(self.other.object), 'timestamp': str(self.other.version)}, 'base' : {'timestamp': str(self.base.version)}}
 
                 arrow = ' -- '
                 if self.other == self.ancestor:
@@ -545,7 +548,7 @@ class patricia_connection:
                 self.closed = True
 
 	def __create_or_lookup_cpl_object(self, originator,
-		     name, otype, trace_id=None, span_id=None, creation_time=None, create=None, container=None):
+		     name, otype, trace_id=None, span_id=None, creation_time=None, death_time=None, create=None, container=None):
 		'''
 		Create or lookup a Patricia object
 
@@ -571,25 +574,28 @@ class patricia_connection:
 		else:
 			container_id = container.id
 
+                if death_time is None:
+                        death_time = 0
+                else:
+                        death_time = death_time
+
                 idp = uuid.uuid1();
                 
 		if create == None:
-                    query = """INSERT INTO object (id,container,originator,name,type,birthday,trace_id,span_id) VALUES ({}, {}, %s, %s, %s, %s, %s, %s) IF NOT EXISTS; """.format(str(idp), str(container_id))
-                    
                     if trace_id and span_id:
-                        query = """INSERT INTO object (id,container,originator,name,type,birthday,trace_id,span_id) VALUES ({}, {}, %s, %s, %s, %s, %s, %s) IF NOT EXISTS; """.format(str(idp), str(container_id))
-                        params = [originator, name, otype, birthday,bytearray(trace_id), span_id]
+                        query = """INSERT INTO object (id,parent_id,originator,name,type,birthday,deathtime,trace_id,span_id) VALUES ({}, {}, %s, %s, %s, %s, %s, %s, %s) IF NOT EXISTS; """.format(str(idp), str(container_id))
+                        params = [originator, name, otype, birthday,death_time,bytearray(trace_id), span_id]
                     else:
-                        query = """INSERT INTO object (id,container,originator,name,type,birthday) VALUES ({}, {}, %s, %s, %s, %s) IF NOT EXISTS; """.format(str(idp), str(container_id))
-                        params = [originator, name, otype, birthday]
+                        query = """INSERT INTO object (id,parent_id,originator,name,type,birthday,deathtime) VALUES ({}, {}, %s, %s, %s, %s, %s) IF NOT EXISTS; """.format(str(idp), str(container_id))
+                        params = [originator, name, otype, birthday, death_time]
 
                     print(query)
                     ret = self.session.execute(query, params);
                     if ret._current_rows[0].applied == False:
                         idp = ret._current_rows[0].id
 		elif create:
-                    query = """INSERT INTO object (id,container,originator,name,type,birthday,trace_id,span_id) VALUES ({},{}, %s, %s, %s, %s, %s, %s); """.format(str(idp), str(container_id))
-                    params = [originator, name, otype, birthday,bytearray(trace_id), span_id]
+                    query = """INSERT INTO object (id,parent_id,originator,name,type,birthday,deathtime,trace_id,span_id) VALUES ({},{}, %s, %s, %s, %s, %s, %s, %s); """.format(str(idp), str(container_id))
+                    params = [originator, name, otype, birthday,death_time,bytearray(trace_id), span_id]
                     print(query)
                     ret = self.session.execute(query, params);
 		else:
@@ -605,18 +611,10 @@ class patricia_connection:
         def __create_or_lookup_trace_object(self, trace_id, span_id, create=None):
 
                 if create == None:
-           #         query = """INSERT INTO object (id,container,originator,name,type,birthday,trace_id,span_id) VALUES ({}, {}, '{}', '{}', '{}',{},{},{}) IF NOT EXISTS; """.format(str(idp), str(container_id), originator, name, otype, birthday,trace_id,span_id)
                     print('None')
-           #         ret = self.session.execute(query);
-           #         if ret._current_rows[0].applied == False:
-           #             idp = ret._current_rows[0].id
                 
                 elif create:
-                    query = """INSERT INTO object (id,container,originator,name,type,birthday,trace_id,span_id) VALUES ({},{}, %s, %s, %s, %s, %s, %s); """.format(str(idp), str(container_id))
-                    #params = [originator, name, otype, birthday,bytearray(trace_id), span_id]
-                    print(query)
-                    #ret = self.session.execute(query, params);
-                
+                    print('None')
                 else:
                     query = """SELECT * from object where trace_id=%s and span_id=%s ALLOW FILTERING;"""
                     params = [bytearray(trace_id), span_id]
@@ -645,16 +643,16 @@ class patricia_connection:
 
                 for row in query_res._current_rows:
                     obj = patricia_object(row.id)
-                    if row.container == None:
+                    if row.parent_id == None:
                         container = None
                     else:
-                        obj_container = patricia_object(row.container)
+                        obj_container = patricia_object(row.parent_id)
                         obj_container_version = obj_container.version();
                         container = patricia_object_version(obj_container,
                                                         obj_container_version)
                     
                     l.append(patricia_object_info(obj, obj.version(),
-                                        0, row.birthday, row.originator, row.name,
+                                        0, row.birthday, row.deathtime,row.originator, row.name,
                                         row.type, container))
 		return l
 			
@@ -682,12 +680,12 @@ class patricia_connection:
                 '''
                 return self.__create_or_lookup_trace_object(trace_id, span_id, create=False)
 
-	def create_object(self, originator, name, type, trace_id=None, span_id=None, creation_time=None, container=None):
+	def create_object(self, originator, name, type, trace_id=None, span_id=None, creation_time=None, death_time=None, container=None):
 		'''
 		Create object, returns None if object already exists.
 		'''
 		return self.__create_or_lookup_cpl_object(originator, name, type, creation_time=creation_time,
-				trace_id=trace_id, span_id=span_id, create=True, container=container)
+				death_time=death_time, trace_id=trace_id, span_id=span_id, create=True, container=container)
 
 
 	def lookup_object(self, originator, name, type):
@@ -772,59 +770,9 @@ class patricia_connection:
                 '''
                 return patricia_object(id)
 
-'''
-	def get_object_for_file(self, file_name, mode=F_CREATE_IF_DOES_NOT_EXIST):
-
-		Get or create (depending on the value of mode) a provenance object
-		that corresponds to the given file on the file system. The file must
-		already exist.
-
-		Please note that the CPL internally refers to the files using their
-		full path, so if you move the file by a utility that is not CPL-aware,
-		a subsequent call to this function with the same file (after it has
-		been moved or renamed) will not find the return back the same
-		provenance object. Furthermore, beware that if you use hard links,
-		you will get different provenance objects for different names/paths
-		of the file.
-		
-		The mode can be one of the following values:
-			* F_LOOKUP_ONLY: Perform only the lookup -- do not create the
-			  corresponding provenance object if it does not already exists.
-			* F_CREATE_IF_DOES_NOT_EXIST: Create the corresponding provenance
-			  object if it does not already exist (this is the default).
-			* F_ALWAYS_CREATE: Always create a new corresponding provenance
-			  object, even if it already exists. Use this if you completely
-			  overwrite the file.
-
-
-		idp = CPLDirect.new_cpl_id_tp()
-		vp  = CPLDirect.new_cpl_version_tp()
-
-		ret = CPLDirect.cpl_lookup_file(file_name, mode, idp, vp)
-		if not CPLDirect.cpl_is_ok(ret):
-			raise Exception('Could not find or create provenance object' +
-			    ' for a file: ' + CPLDirect.cpl_error_string(ret))
-			
-		r = cpl_object(idp)
-
-		CPLDirect.delete_cpl_id_tp(idp)
-		CPLDirect.delete_cpl_version_tp(vp)
-		return r
-
-
-	def create_object_for_file(self, file_name):
-
-		Create a provenance object that corresponds to the specified file.
-		This function is equivalent to calling get_object_for_file() with
-		mode = F_ALWAYS_CREATE.
-
-		return self.get_object_for_file(file_name, F_ALWAYS_CREATE)
-'''
-
 #
 # Information about a provenance session
 #
-
 class cpl_session_info:
 	'''
 	Information about a provenance session
@@ -850,7 +798,7 @@ class patricia_object_info:
         '''
 
         def __init__(self, object, version, creation_session, creation_time,
-                        originator, name, type, container):
+                        originator, name, type, container,death_time):
                 '''
                 Create an instance of this object
                 '''
@@ -858,6 +806,7 @@ class patricia_object_info:
                 self.object = object
                 self.version = version
                 self.creation_time = creation_time
+                self.death_time = death_time
                 self.originator = originator
                 self.name = name
                 self.type = type
@@ -868,7 +817,8 @@ class patricia_object_info:
                     'type': self.type, 
                     'originator': self.originator,
                     'creation_time': self.creation_time,
-                    'version': self.version
+                    'death_time': self.death_time,
+                    'timestamp': self.version
                     };
 
 
@@ -1017,17 +967,17 @@ class patricia_object:
                     version = object.birthday;
 
                 # get container version number 
-                if object.container == None:
+                if object.parent_id == None:
                     container = None
                 else:
-                    container_obj = patricia_object(object.container);
+                    container_obj = patricia_object(object.parent_id);
                     container_version = container_obj.version();
                     container = patricia_object_version(container_obj,
                             container_version)
 
                 # create an object_info object 
                 _info = patricia_object_info(self, version,
-                                0, object.birthday,
+                                0, object.birthday, object.deathtime,
                                 str(object.originator), str(object.name), str(object.type), container)
 
                 return _info
@@ -1141,7 +1091,7 @@ class patricia_object:
                         _version = version
                         _src = src
 
-                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(_src.id, self.id, type, None, unix_time_millis(datetime.datetime.now()));
+                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(_src.id, self.id, type, None, _version);
                 ret = _patricia_connection.session.execute(query);
                 return True;
 
@@ -1217,7 +1167,7 @@ class patricia_object:
                              self.id, descendant_version,
                              _type, direction)
                         l.append(a)
-                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} and ts<{} ALLOW FILTERING;""".format(self.id, version, unix_time_millis(descendant_version));
+                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} and ts<{} ALLOW FILTERING;""".format(self.id, version, descendant_version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                     else:
                         select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} ALLOW FILTERING;""".format(self.id, version);

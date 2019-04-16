@@ -36,11 +36,12 @@ session.execute('USE patricia_jaeger;');
 # object table
 create_table_query = """CREATE TABLE object(
                       id timeuuid,
-                      container timeuuid,
+                      parent_id timeuuid,
                       originator text, 
                       name text, 
                       type text,
                       birthday bigint,
+                      deathtime bigint,
                       trace_id blob,
                       span_id bigint,
                       PRIMARY KEY (originator, name, type)

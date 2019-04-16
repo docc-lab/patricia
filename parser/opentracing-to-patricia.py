@@ -46,7 +46,7 @@ for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
         continue;
 
     # create a Patricia object and insert into the Patricia
-    obj = patricia.create_object(tr.process_service_name, tr.operation_name, 'proc', trace_id=bytearray(tr.trace_id), span_id=tr.span_id, creation_time=tr.start_time)
+    obj = patricia.create_object(tr.process_service_name, tr.operation_name, 'proc', trace_id=bytearray(tr.trace_id), span_id=tr.span_id, creation_time=tr.start_time, death_time=long(tr.start_time) + long(tr.duration))
     pat_object_df.append({'trace_id': tr.trace_id, 'span_id': tr.span_id, 'object': obj}, ignore_index=True)
     
     # link to span end
@@ -83,9 +83,3 @@ for tr in rows._current_rows:
                 c_obj = patricia.get_trace_object(trace_id=bytearray(tr.trace_id), span_id=tr.span_id)
                 c_obj.control_flow_from(p_obj, type=Patricia.CONTROL_START, version = tr.start_time)
                 c_obj.control_flow_to(p_obj, type=Patricia.CONTROL_OP, version = p_obj.version())
-
-#for index, tr in traces_sortby_timestamp.iterrows():
-#    if tr.refs:
-#        print(tr.refs[0].ref_type)
-#print(traces_sortby_timestamp['trace_id'].values[0])
-#print(traces_sortby_timestamp['refs'])

@@ -29,50 +29,54 @@ def ancestry(originator, name, otype, version, direction, flags):
             objs.append(anc.json())
         
     cpl_str = json.dumps(objs)
-    print("\tancestry string: " + cpl_str);
+    print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "");
 
-def getSpecificVersion(originator, name, otype):
+def getSpecificVersion(originator, name, otype, version):
+    print("\tget specific version: for object: originator:" + str(originator) + ", name:" + str(name)  + ", type:" +  str(otype)  + ", version:" +  str(version) )
     c = Patricia.patricia_connection()
     
     #get object
-    obj_ls = c.lookup_all(str(originator), str(name), str(otype))
+    obj = c.lookup_object(str(originator), str(name), str(otype))
+    if obj is None:
+        print("\t\tobject: originator:" + str(originator) + ", name:" + str(name)  + ", type:" +  str(otype) + " not found")
 
-    # return version 
-
-    #print(objs)
-    cpl_str = json.dumps(objs)
-    print("\tspecific version: " + cpl_str)
+    version = obj.specific_version(version)
+    cpl_str = json.dumps({'timestamp':str(version)})
     c.close()
     return cpl_str.replace("\"", "")
 
 
 def getAllVersions(originator, name, otype, version):
+    print("\tgetAllVersions for object: originator:" + str(originator) + ", name:" + str(name)  + ", type:" +  str(otype) + " where version is:"  + str(version));
     c = Patricia.patricia_connection()
     obj = c.lookup_object(str(originator), str(name), str(otype))
+    if obj is None:
+        print("\t\tobject: originator:" + str(originator) + ", name:" + str(name)  + ", type:" +  str(otype) + " not found")
 
-    print("getAllVersions for object: originator:" + str(originator) + ", name:" + str(name)  + ", type:" +  str(otype) + " where version is:"  + str(version));
     pat_lineage = obj.get_all_versions(long(str(version)));
 
     lineage = []
     for pl in pat_lineage:
-        lineage.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'version':str(pl.version)})
+        lineage.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'timestamp':str(pl.version)})
 
     cpl_str = json.dumps(lineage)
-    print("getAllVersion" + cpl_str)
+    print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "")
 
 def getVersion(originator, name, otype):
+    print("\tget version: for object: originator:" + str(originator) + ", name:" + str(name)  + ", type:" +  str(otype) )
     c = Patricia.patricia_connection()
     obj = c.lookup_object(str(originator), str(name), str(otype))
+    if obj is None:
+        print("\t\tobject: originator:" + str(originator) + ", name:" + str(name)  + ", type:" +  str(otype) + " not found")
     version = 0; 
     
-    print (str(originator) + ", "  +  str(name) + ", " + str(otype))
     version = obj.info().version
 
-    cpl_str = json.dumps({'version':str(version)})
+    cpl_str = json.dumps({'timestamp':str(version)})
     print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "")
@@ -89,7 +93,7 @@ def getProperty(originator, name, otype, key, version):
     for p in prop:
         prop_list.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'key': str(p[0]), 'value': str(p[1])})
     cpl_str = json.dumps(prop_list)
-    print("property is: " + cpl_str)
+    print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "")
 
@@ -102,7 +106,7 @@ def lookup(originator, name, otype):
 
     objs = []
     for obj in obj_ls:
-        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(Patricia.unix_time_millis(obj.info().creation_time)), 'version':str(obj.version())})
+        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(Patricia.unix_time_millis(obj.info().creation_time)), 'timestamp':str(obj.version())})
 
     cpl_str = json.dumps(objs)
     print(cpl_str)
@@ -113,7 +117,7 @@ def lookupbyid(id):
     c = Patricia.patricia_connection()
     obj = c.lookup_by_id(str(id))
     obj_info = obj.info();
-    cpl_str = json.dumps([{'originator': obj_info.originator, 'name' : obj_info.name, 'type' : obj_info.type, 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'version':str(obj.version())}]);
+    cpl_str = json.dumps([{'originator': obj_info.originator, 'name' : obj_info.name, 'type' : obj_info.type, 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'timestamp':str(obj.version())}]);
     print(cpl_str)
     c.close()
     return cpl_str.replace("\"", "");
@@ -125,7 +129,7 @@ def read(originator, name, otype):
     
     objs = []
     for obj in obj_ls:
-        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'version':str(obj.version())})
+        objs.append({'originator': str(originator), 'name' : str(name), 'type' : str(otype), 'id': str(obj.id), 'ct': str(obj.info().creation_time), 'timestamp':str(obj.version())})
                 
     cpl_str = json.dumps(objs)
     print(cpl_str) 
@@ -140,7 +144,7 @@ def getAllObjectsJson(dump_file_path):
     objs = []
     for o in obj_ls:
         obj = {'info' : {},
-                'versions': [],
+                'timestamps': [],
                 'properties': [],
                 'ancestors': [],
                 'descendant': []};
@@ -149,7 +153,7 @@ def getAllObjectsJson(dump_file_path):
 
         obj_versions = o.object.get_all_versions();
         for v in obj_versions:
-            obj['versions'].append(v.jsons())
+            obj['timestamps'].append(v.jsons())
             obj_properties = o.object.properties(version=v);
             for p in obj_properties:
                 obj['properties'].append(p.json())
