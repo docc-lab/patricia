@@ -46,6 +46,7 @@ for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
         continue;
 
     # create a Patricia object and insert into the Patricia
+    print(tr.span_id)
     obj = patricia.create_object(tr.process_service_name, tr.operation_name, 'proc', trace_id=bytearray(tr.trace_id), span_id=tr.span_id, creation_time=tr.start_time, death_time=long(tr.start_time) + long(tr.duration))
     pat_object_df.append({'trace_id': tr.trace_id, 'span_id': tr.span_id, 'object': obj}, ignore_index=True)
     
@@ -58,7 +59,7 @@ for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
             for field in log.fields:
                 print("\t\t" + str(field))
                 if field.key == 'type':
-                    otype = field.value_string
+                    otype = 'artifact' #field.value_string
                 elif field.key == 'name':
                     name = field.value_string
                 elif field.key == 'method':

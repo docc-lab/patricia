@@ -35,8 +35,8 @@ session.execute('USE patricia_jaeger;');
 # Create Tables
 # object table
 create_table_query = """CREATE TABLE object(
-                      id timeuuid,
-                      parent_id timeuuid,
+                      id uuid,
+                      parent_id uuid,
                       originator text, 
                       name text, 
                       type text,
@@ -49,8 +49,8 @@ create_table_query = """CREATE TABLE object(
 raw = session.execute(create_table_query);
 
 create_table_query = """CREATE TABLE flow(
-                        id_p timeuuid, 
-                        id_c timeuuid,
+                        id_p uuid, 
+                        id_c uuid,
                         type text, 
                         event text, 
                         ts bigint,
@@ -59,7 +59,7 @@ raw = session.execute(create_table_query);
 
 
 create_table_query = """CREATE TABLE property(
-                        id timeuuid,
+                        id uuid,
                         version bigint,
                         key text, 
                         value text, 

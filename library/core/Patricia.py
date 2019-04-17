@@ -579,8 +579,17 @@ class patricia_connection:
                 else:
                         death_time = death_time
 
-                idp = uuid.uuid1();
-                
+
+                if otype == 'artifact':
+                    o = {
+                        "name": name,
+                        "originator": originator,
+                        "type": otype
+                        }
+                    idp = uuid.uuid3(uuid.NAMESPACE_DNS, str(o))
+                else:
+                    idp = uuid.uuid1();
+
 		if create == None:
                     if trace_id and span_id:
                         query = """INSERT INTO object (id,parent_id,originator,name,type,birthday,deathtime,trace_id,span_id) VALUES ({}, {}, %s, %s, %s, %s, %s, %s, %s) IF NOT EXISTS; """.format(str(idp), str(container_id))
@@ -590,6 +599,7 @@ class patricia_connection:
                         params = [originator, name, otype, birthday, death_time]
 
                     print(query)
+                    print(params)
                     ret = self.session.execute(query, params);
                     if ret._current_rows[0].applied == False:
                         idp = ret._current_rows[0].id
@@ -597,6 +607,7 @@ class patricia_connection:
                     query = """INSERT INTO object (id,parent_id,originator,name,type,birthday,deathtime,trace_id,span_id) VALUES ({},{}, %s, %s, %s, %s, %s, %s, %s); """.format(str(idp), str(container_id))
                     params = [originator, name, otype, birthday,death_time,bytearray(trace_id), span_id]
                     print(query)
+                    print(params)
                     ret = self.session.execute(query, params);
 		else:
                     query = """SELECT * from object where originator='{}' and name='{}' and type='{}';""".format(originator, name, otype);
@@ -616,15 +627,16 @@ class patricia_connection:
                 elif create:
                     print('None')
                 else:
-                    query = """SELECT * from object where trace_id=%s and span_id=%s ALLOW FILTERING;"""
+                    query = "SELECT * from object where trace_id= %s and span_id= %s ALLOW FILTERING;"
                     params = [bytearray(trace_id), span_id]
+                    print(params)
                     print(query)
                     ret = self.session.execute(query, params);
+                    print(ret._current_rows)
                     if len(ret._current_rows) > 0:
                         idp = ret._current_rows[0].id
-
-                r = patricia_object(idp)
-                return r
+                        r = patricia_object(idp)
+                        return r
 
 
 	def get_all_objects(self, fast=False):
@@ -655,7 +667,7 @@ class patricia_connection:
                                         creation_session=0, creation_time = row.birthday, death_time=row.deathtime, originator=row.originator, name=row.name,
                                         type=row.type, container=container))
 
-                    print(l)
+                    #print(l)
 		return l
 			
 
@@ -1010,7 +1022,7 @@ class patricia_object:
                     version = self.version()
                
                 query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(self.id, dest.id, type, None, version);
-                print(query)
+                #print(query)
                 ret = _patricia_connection.session.execute(query);
  
                 return True;
@@ -1069,7 +1081,7 @@ class patricia_object:
                         _src = src
 
                 query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}', {});""".format(_src.id, self.id, type, None, _version);
-                print(query)
+                #print(query)
                 ret = _patricia_connection.session.execute(query);
                 return True;
 
