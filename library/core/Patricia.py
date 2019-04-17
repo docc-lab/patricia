@@ -340,7 +340,7 @@ class patricia_object_property:
 
         def json(self):
             return {'object': str(self.object),
-                    'version': self.object_version.version,
+                    'timestamp': self.object_version.version,
                     'key': self.key,
                     'value': self.value}
 
@@ -651,9 +651,9 @@ class patricia_connection:
                         container = patricia_object_version(obj_container,
                                                         obj_container_version)
                     
-                    l.append(patricia_object_info(obj, obj.version(),
-                                        0, row.birthday, row.deathtime,row.originator, row.name,
-                                        row.type, container))
+                    l.append(patricia_object_info(object=obj, version=obj.version(),
+                                        creation_session=0, creation_time = row.birthday, death_time=row.deathtime, originator=row.originator, name=row.name,
+                                        type=row.type, container=container))
 		return l
 			
 
@@ -813,12 +813,14 @@ class patricia_object_info:
                 self.container = container
 
         def json(self):
-            return {'name': self.name, 
+            return {'id': str(self.object),
+                    'name': self.name, 
                     'type': self.type, 
                     'originator': self.originator,
                     'creation_time': self.creation_time,
                     'death_time': self.death_time,
-                    'timestamp': self.version
+                    'timestamp': self.version,
+                    'parent' : self.container
                     };
 
 
@@ -976,9 +978,9 @@ class patricia_object:
                             container_version)
 
                 # create an object_info object 
-                _info = patricia_object_info(self, version,
-                                0, object.birthday, object.deathtime,
-                                str(object.originator), str(object.name), str(object.type), container)
+                _info = patricia_object_info(object=self, version=version,
+                                creation_session=0, creation_time=object.birthday,
+                                originator=str(object.originator), name=str(object.name), type=str(object.type), container=container, death_time=object.deathtime)
 
                 return _info
 

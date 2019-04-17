@@ -1,12 +1,14 @@
 [
     {
         "info": {
-            "originator": 0, 
-            "name": "pt11", 
+            "originator": "pt11", 
+            "name": "/tmp/tmpDc6F6a", 
+            "parent": null, 
             "timestamp": 1555348476832672, 
+            "death_time": 0, 
             "creation_time": 1555348470822829, 
-            "death_time": null, 
-            "type": "/tmp/tmpDc6F6a"
+            "type": "file", 
+            "id": "39fa8289-608e-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
@@ -48,12 +50,14 @@
     }, 
     {
         "info": {
-            "originator": 0, 
-            "name": "pt11", 
+            "originator": "pt11", 
+            "name": "/tmp/tmpiy7NH6", 
+            "parent": null, 
             "timestamp": 1555348477833906, 
+            "death_time": 0, 
             "creation_time": 1555348477833906, 
-            "death_time": null, 
-            "type": "/tmp/tmpiy7NH6"
+            "type": "file", 
+            "id": "39fa828c-608e-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
@@ -95,12 +99,14 @@
     }, 
     {
         "info": {
-            "originator": 0, 
-            "name": "pt11", 
+            "originator": "pt11", 
+            "name": "/tmp/tmpzvuZWE", 
+            "parent": null, 
             "timestamp": 1555348478835184, 
+            "death_time": 0, 
             "creation_time": 1555348475830794, 
-            "death_time": null, 
-            "type": "/tmp/tmpzvuZWE"
+            "type": "file", 
+            "id": "39fa828a-608e-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
@@ -128,12 +134,14 @@
     }, 
     {
         "info": {
-            "originator": 1555348479836324, 
-            "name": "pt11", 
+            "originator": "pt11", 
+            "name": "Process A", 
+            "parent": null, 
             "timestamp": 1555348479836324, 
+            "death_time": 1555348479836324, 
             "creation_time": 1555348469818745, 
-            "death_time": null, 
-            "type": "Process A"
+            "type": "proc", 
+            "id": "39fa8288-608e-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
@@ -178,12 +186,14 @@
     }, 
     {
         "info": {
-            "originator": 1555348475828915, 
-            "name": "pt11", 
+            "originator": "pt11", 
+            "name": "Process B", 
+            "parent": null, 
             "timestamp": 1555348475828915, 
+            "death_time": 1555348475828915, 
             "creation_time": 1555348471824032, 
-            "death_time": null, 
-            "type": "Process B"
+            "type": "proc", 
+            "id": "39fa828e-608e-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
