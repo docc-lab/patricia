@@ -385,7 +385,7 @@ class patricia_object_version:
                         prefix + "_version": str(self.version)}
 
         def jsons(self):
-                return {"timestamp": str(self.version)}
+                return {"timestamp": self.version}
 
         def info(self):
                 '''
@@ -476,17 +476,17 @@ class patricia_ancestor:
                 '''
                 if verbose:
                     js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other': {'originator' : self.other.object.info().originator, 'name' : self.other.object.info().name,
-                        'type' : self.other.object.info().type, 'version': str(self.other.version)}, 'base' : {'version': str(self.base.version)}}
+                        'type' : self.other.object.info().type, 'version': self.other.version}, 'base' : {'version': self.base.version}}
                 else:
-                    js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other': {'id': str(self.other.object), 'timestamp': str(self.other.version)}, 'base' : {'timestamp': str(self.base.version)}}
+                    js = {'direction': '', 'type': dependency_type_to_str(int(self.type)), 'other': {'id': str(self.other.object), 'timestamp': self.other.version}, 'base' : {'timestamp': self.base.version}}
 
                 arrow = ' -- '
                 if self.other == self.ancestor:
                         arrow = ' --> '
-                        js['direction'] = 'ancestor'
+                        js['direction'] = 'ancestors'
                 else:
                         arrow = ' <-- '
-                        js['direction'] = 'descendant'
+                        js['direction'] = 'descendants'
                 return js;
 #
 # CPL Connection
@@ -654,6 +654,8 @@ class patricia_connection:
                     l.append(patricia_object_info(object=obj, version=obj.version(),
                                         creation_session=0, creation_time = row.birthday, death_time=row.deathtime, originator=row.originator, name=row.name,
                                         type=row.type, container=container))
+
+                    print(l)
 		return l
 			
 
@@ -813,6 +815,7 @@ class patricia_object_info:
                 self.container = container
 
         def json(self):
+            f = lambda parent : parent.object if parent else None
             return {'id': str(self.object),
                     'name': self.name, 
                     'type': self.type, 
@@ -820,7 +823,7 @@ class patricia_object_info:
                     'creation_time': self.creation_time,
                     'death_time': self.death_time,
                     'timestamp': self.version,
-                    'parent' : self.container
+                    'parent' : str(f(self.container))
                     };
 
 
@@ -857,6 +860,11 @@ class patricia_object:
                 '''
                 return str(self.id)
 
+        def add_parent(self, parent):
+            query = """UPDATE object SET parent_id = {} WHERE id = {};""".format(str(parent.id), str(self.id))
+            query_res = _patricia_connection.session.execute(query);
+            
+        
         def version(self):
                 '''
                 Determine the current version of this provenance object

@@ -44,7 +44,7 @@ create_table_query = """CREATE TABLE object(
                       deathtime bigint,
                       trace_id blob,
                       span_id bigint,
-                      PRIMARY KEY (originator, name, type)
+                      PRIMARY KEY (id)
                       );""" 
 raw = session.execute(create_table_query);
 

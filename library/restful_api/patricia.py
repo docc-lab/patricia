@@ -150,7 +150,7 @@ def getAllObjectsJson(dump_file_path):
                 'descendant': []};
 
         obj['info'] = o.json();
-
+        
         obj_versions = o.object.get_all_versions();
         for v in obj_versions:
             obj['timestamps'].append(v.jsons())
@@ -165,9 +165,9 @@ def getAllObjectsJson(dump_file_path):
         obj_decendant = o.object.ancestry(direction = Patricia.D_DESCENDANTS);
         for d in obj_decendant:
             obj['descendant'].append(d.jsons())
-
-        objs.append(obj)
         
+        objs.append(obj)
+    
     with open(dump_file_path, 'w') as outfile:
         json.dump(objs, outfile, indent=4)
 
