@@ -47,11 +47,13 @@ for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
 
     # create a Patricia object and insert into the Patricia
     print(tr.span_id)
-    obj = patricia.create_object(tr.process_service_name, tr.operation_name, 'proc', trace_id=bytearray(tr.trace_id), span_id=tr.span_id, creation_time=tr.start_time, death_time=long(tr.start_time) + long(tr.duration))
+    obj = patricia.create_object(tr.process_service_name, tr.operation_name, 'proc', trace_id=bytearray(tr.trace_id), span_id=tr.span_id, creation_time=long(tr.start_time), death_time=long(tr.start_time) + long(tr.duration))
     pat_object_df.append({'trace_id': tr.trace_id, 'span_id': tr.span_id, 'object': obj}, ignore_index=True)
     
     # link to span end
-    obj.control_flow_to(obj, type=Patricia.CONTROL_START, version = long(tr.start_time) + long(tr.duration))
+    print("duration:" + str(long(tr.duration)))
+    deathtime = long(tr.start_time) + long(tr.duration)
+    obj.control_flow_to(obj, type=Patricia.CONTROL_START, timestamp = deathtime)
 
     if tr.logs:
         for log in tr.logs:
@@ -65,13 +67,13 @@ for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
                 elif field.key == 'method':
                     method = field.value_string
                 
-            shared_obj =  patricia.get_object(tr.process_service_name, name, otype, creation_time=log.ts)
+            shared_obj =  patricia.get_object(tr.process_service_name, name, otype, creation_time=long(log.ts))
             if method == 'write':
-                shared_obj.data_flow_to(obj, type=Patricia.DATA_INPUT, version=log.ts)
+                shared_obj.data_flow_to(obj, type=Patricia.DATA_INPUT, timestamp=long(log.ts))
             elif method == 'update':
-                shared_obj.data_flow_from(shared_obj, type=Patricia.DATA_TRANSLATION, version=log.ts)
-            elif method == 'read':
-                shared_obj.data_flow_from(shared_obj, type=Patricia.DATA_GENERIC, version=log.ts)
+                shared_obj.data_flow_from(shared_obj, type=Patricia.DATA_TRANSLATION, timestamp=long(log.ts))
+#            elif method == 'read':
+ #               shared_obj.data_flow_from(obj, type=Patricia.DATA_GENERIC, )
 
 
 for tr in rows._current_rows:
@@ -83,5 +85,6 @@ for tr in rows._current_rows:
                 p_obj = patricia.get_trace_object(trace_id=bytearray(ref.trace_id), span_id=ref.span_id)
                 c_obj = patricia.get_trace_object(trace_id=bytearray(tr.trace_id), span_id=tr.span_id)
                 c_obj.add_parent(p_obj);
-                c_obj.control_flow_from(p_obj, type=Patricia.CONTROL_START, version = tr.start_time)
-                c_obj.control_flow_to(p_obj, type=Patricia.CONTROL_OP, version = p_obj.version())
+                deathtime =  long(tr.start_time) + long(tr.duration)
+                c_obj.control_flow_from(p_obj, type=Patricia.CONTROL_START, timestamp = tr.start_time)
+                c_obj.control_flow_to(p_obj, type=Patricia.CONTROL_OP, timestamp = deathtime)

@@ -152,12 +152,15 @@ def getAllObjectsJson(dump_file_path):
         obj['info'] = o.json();
         
         obj_versions = o.object.get_all_versions();
+        print(obj['info'])
         for v in obj_versions:
+            print(v.jsons())
             obj['timestamps'].append(v.jsons())
             obj_properties = o.object.properties(version=v);
             for p in obj_properties:
                 obj['properties'].append(p.json())
 
+        print('\n')
         obj_ancestors = o.object.ancestry(direction = Patricia.D_ANCESTORS);
         for a in obj_ancestors:
             obj['ancestors'].append(a.jsons())

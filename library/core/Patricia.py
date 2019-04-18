@@ -283,7 +283,6 @@ def p_object_version(obj_ver, with_session = False):
 	Method calls:
 		p_object_version(obj_ver, with_session = False)
 	'''
-	print(str(obj_ver))
 	i = obj_ver.info()
 	if with_session:
 		print('creation_time: ' + str(i.creation_time))
@@ -550,8 +549,6 @@ class patricia_connection:
 	def __create_or_lookup_cpl_object(self, originator,
 		     name, otype, trace_id=None, span_id=None, creation_time=None, death_time=None, create=None, container=None):
 		'''
-		Create or lookup a Patricia object
-
 		** Parameters **
 			originator 
 			name: originator-local name
@@ -599,15 +596,14 @@ class patricia_connection:
                         params = [originator, name, otype, birthday, death_time]
 
                     print(query)
-                    print(params)
                     ret = self.session.execute(query, params);
                     if ret._current_rows[0].applied == False:
+                        print("Object already inserted")
                         idp = ret._current_rows[0].id
 		elif create:
                     query = """INSERT INTO object (id,parent_id,originator,name,type,birthday,deathtime,trace_id,span_id) VALUES ({},{}, %s, %s, %s, %s, %s, %s, %s); """.format(str(idp), str(container_id))
                     params = [originator, name, otype, birthday,death_time,bytearray(trace_id), span_id]
                     print(query)
-                    print(params)
                     ret = self.session.execute(query, params);
 		else:
                     query = """SELECT * from object where originator='{}' and name='{}' and type='{}';""".format(originator, name, otype);
@@ -629,7 +625,6 @@ class patricia_connection:
                 else:
                     query = "SELECT * from object where trace_id= %s and span_id= %s ALLOW FILTERING;"
                     params = [bytearray(trace_id), span_id]
-                    print(params)
                     print(query)
                     ret = self.session.execute(query, params);
                     print(ret._current_rows)
@@ -938,11 +933,13 @@ class patricia_object:
                 query_res = _patricia_connection.session.execute(query_get_object);
                 
                 versions = []
-                versions.append(patricia_object_version(self, self.info().creation_time))
-
+                versions.append(patricia_object_version(self, long(self.info().creation_time)))
+                
                 for row in query_res._current_rows:
-                    versions.append(patricia_object_version(self, long(row.ts)))
+                    if long(self.info().creation_time) != long(row.ts):
+                        versions.append(patricia_object_version(self, long(row.ts)))
 
+                    
                 return versions;
         
         
@@ -953,9 +950,36 @@ class patricia_object:
                 called.
                 '''
                 # query Cassandra to get the entry from object table with object id
-                query_get_object = "SELECT * FROM flow WHERE id_c={} and ts<={} ALLOW FILTERING;".format(self.id, v)
+                query_get_object = "SELECT * FROM flow WHERE id_c={} and ts<{} ALLOW FILTERING;".format(self.id, v)
                 query_res = _patricia_connection.session.execute(query_get_object);
                 
+                if len(query_res._current_rows) <= 0:
+                     # query Cassandra to get the entry from object table with object id
+                    query_get_object = "SELECT * FROM object WHERE id={} ALLOW FILTERING;".format(str(self.id))
+                    query_res = _patricia_connection.session.execute(query_get_object);
+                    if len(query_res._current_rows) <= 0:
+                        return 0;
+
+                    object = query_res._current_rows[0];
+                    version = object.birthday;
+                else:
+                    versionings = [[row.id_c, row.ts] for row in query_res._current_rows]
+                    versionings.sort(key = lambda x: x[1])
+                    version = versionings[-1][1];
+               
+                return patricia_object_version(self, version)
+
+
+        def last_version_before(self, v):
+                '''
+                Get a cpl_object_version object for the specified version. Note that
+                the specified version number does not get validated until info() is
+                called.
+                '''
+                # query Cassandra to get the entry from object table with object id
+                query_get_object = "SELECT * FROM flow WHERE id_c={} and ts<{} ALLOW FILTERING;".format(self.id, v)
+                query_res = _patricia_connection.session.execute(query_get_object);
+
                 if len(query_res._current_rows) <= 0:
                      # query Cassandra to get the entry from object table with object id
                     query_get_object = "SELECT * FROM object WHERE id={} ALLOW FILTERING;".format(str(self.id))
@@ -969,7 +993,7 @@ class patricia_object:
                     versionings = [[row.id_c, row.ts] for row in query_res._current_rows]
                     versionings.sort(key = lambda x: x[1])
                     version = versionings[-1][1];
-               
+
                 return patricia_object_version(self, version)
 
 
@@ -1005,7 +1029,7 @@ class patricia_object:
                 return _info
 
         # I guess I totally ignored the concept of versioning here. 
-        def control_flow_to(self, dest, type=CONTROL_OP, version=None):
+        def control_flow_to(self, dest, type=CONTROL_OP, timestamp=None):
                 '''
                 Add control flow edge of type from self to dest. If version
                 is specified, then add flow to dest with explicit version,
@@ -1018,17 +1042,17 @@ class patricia_object:
                 CPL.CONTROL_GENERIC is an alias for CPL.CONTROL_OP.
                 '''
                 #inset into flow table with self.id, dest.id, timestamp, type
-                if version is None:
-                    version = self.version()
+                if timestamp is None:
+                    timestamp = long(round(time.time() * 1000)) 
                
-                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(self.id, dest.id, type, None, version);
-                #print(query)
+                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(self.id, dest.id, type, None, timestamp);
+                print(query)
                 ret = _patricia_connection.session.execute(query);
  
                 return True;
 
 
-        def data_flow_to(self, dest, type=DATA_INPUT, version=None):
+        def data_flow_to(self, dest, type=DATA_INPUT, timestamp=None):
                 '''
                 Add data flow edge of type from self to dest. If version
                 is specified, then add flow to dest with explicit version,
@@ -1043,16 +1067,16 @@ class patricia_object:
                 CPL.DATA_GENERIC is an alias for CPL.DATA_INPUT.
                 '''
                 #inset into flow table with self.id, dest.id, timestamp, type
-                if version is None:
-                    version = self.version()
+                if timestamp is None:
+                    timestamp = long(round(time.time() * 1000))
 
-                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(self.id, dest.id, type, None, version);
+                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(self.id, dest.id, type, None, timestamp);
                 ret = _patricia_connection.session.execute(query);
                 return True;
 
 
 
-        def control_flow_from(self, src, type=CONTROL_OP, version=None):
+        def control_flow_from(self, src, type=CONTROL_OP, timestamp=None):
                 '''
                 Add control flow edge of the given type from src to self. If version
                 is specified, then add flow to dest with explicit version, else add
@@ -1067,26 +1091,16 @@ class patricia_object:
                 #inset into flow table with self.id, dest.id, timestamp, type
                 #if version is None:
                 #    version = self.version()
-                if isinstance(src, patricia_object_version):
-                        if version is not None:
-                                raise Exception('The version argument must be None if ' +
-                                        'src is of type cpl_object_version')
-                        _version = src.version
-                        _src = src.object
-                elif version is None:
-                        _version = src.version()
-                        _src = src
-                else:
-                        _version = version
-                        _src = src
+                if timestamp is None:
+                    timestamp = long(round(time.time() * 1000))
 
-                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}', {});""".format(_src.id, self.id, type, None, _version);
-                #print(query)
+                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}', {});""".format(src.id, self.id, type, None, timestamp);
+                print(query)
                 ret = _patricia_connection.session.execute(query);
                 return True;
 
 
-        def data_flow_from(self, src, type=DATA_INPUT, version=None):
+        def data_flow_from(self, src, type=DATA_INPUT, timestamp=None):
                 '''
                 Add data flow edge of the given type from src to self. If version
                 is specified, then add flow to dest with explicit version, else add
@@ -1100,20 +1114,10 @@ class patricia_object:
 
                 CPL.DATA_GENERIC is an alias for CPL.DATA_INPUT.
                 '''
-                if isinstance(src, patricia_object_version):
-                        if version is not None:
-                                raise Exception('The version argument must be None if ' +
-                                        'src is of type cpl_object_version')
-                        _version = src.version
-                        _src = src.object
-                elif version is None:
-                        _version = src.version()
-                        _src = src
-                else:
-                        _version = version
-                        _src = src
+                if timestamp is None:
+                    timestamp = long(round(time.time() * 1000))
 
-                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(_src.id, self.id, type, None, _version);
+                query = """INSERT INTO flow (id_p,id_c,type,event,ts) VALUES ({}, {}, '{}', '{}',{});""".format(src.id, self.id, type, None, timestamp);
                 ret = _patricia_connection.session.execute(query);
                 return True;
 
@@ -1137,13 +1141,16 @@ class patricia_object:
 
                 l = []
                 if direction == D_ANCESTORS:
+                    
                      select_ancestry_query = """SELECT * from flow where id_c={} and ts<={} ALLOW FILTERING;""".format(self.id, version);
                      query_res = _patricia_connection.session.execute(select_ancestry_query);
                      if len(query_res._current_rows) <= 0:
                         return l;
                 
+                     
                      p_v = [(row.ts, row.id_p, int(row.type)) for row in query_res._current_rows]
                      self_entry = max(p_v, key=lambda x:x[0])
+                
                      parent = patricia_object(self_entry[1]);
                      category_type = get_dependency_category(int(self_entry[2]))
                      if category_type == DEPENDENCY_CATEGORY_DATA and (flags & A_NO_DATA_DEPENDENCIES) != 0:
@@ -1151,6 +1158,7 @@ class patricia_object:
                      elif category_type == DEPENDENCY_CATEGORY_CONTROL and (flags & A_NO_CONTROL_DEPENDENCIES) != 0:
                          print ("Do not add entry")
                      else :
+
                          a = patricia_ancestor(self_entry[1], parent.specific_version(self_entry[0]).version,
                              self.id, self_entry[0],
                              self_entry[2], direction)
@@ -1176,26 +1184,25 @@ class patricia_object:
                     select_ancestry_query = """SELECT id_p, type, MIN(ts) from flow where id_c={} and ts>{} ALLOW FILTERING;""".format(self.id, version);
                     query_res = _patricia_connection.session.execute(select_ancestry_query);
 
-                    if len(query_res._current_rows) <= 0:
-                        return l;
+                    if len(query_res._current_rows) > 0:
+                        self_descendant_version = query_res._current_rows[0].system_min_ts;
+                        self_type = query_res._current_rows[0].type;
+                        id_p = query_res._current_rows[0].id_p;
+                        
+                        if self_descendant_version != None:
+                            a = patricia_ancestor(self.id, version,
+                                    self.id, self_descendant_version,
+                                    self_type, direction)
+                            l.append(a)
+                           
 
-               
-                    descendant_version = query_res._current_rows[0].system_min_ts;
-                    _type = query_res._current_rows[0].type;
-                    id_p = query_res._current_rows[0].id_p;
-
-                    if descendant_version != None:
-                        a = patricia_ancestor(self.id, version,
-                             self.id, descendant_version,
-                             _type, direction)
-                        l.append(a)
+                    if self_descendant_version != None:
                         select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} and ts<{} ALLOW FILTERING;""".format(self.id, version, descendant_version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                     else:
                         select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} ALLOW FILTERING;""".format(self.id, version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
-
-
+                            
                     if len(query_res._current_rows) <= 0:
                         return l;
 
