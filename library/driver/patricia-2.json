@@ -3,7 +3,7 @@
         "info": {
             "originator": "pt11", 
             "name": "/tmp/tmpBTqkBq", 
-            "parent": "None", 
+            "parent": "null", 
             "timestamp": 1555521995904410, 
             "death_time": 0, 
             "creation_time": 1555521995904410, 
@@ -22,7 +22,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555521995904410, 
-                    "id": "6313292c-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f90-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -35,7 +35,7 @@
         "info": {
             "originator": "pt11", 
             "name": "/tmp/tmpx7Zm1V", 
-            "parent": "None", 
+            "parent": "null", 
             "timestamp": 1555530484711533, 
             "death_time": 0, 
             "creation_time": 1555530478703814, 
@@ -70,7 +70,7 @@
         "info": {
             "originator": "pt11", 
             "name": "/tmp/tmppTKkdA", 
-            "parent": "None", 
+            "parent": "null", 
             "timestamp": 1555521998910088, 
             "death_time": 0, 
             "creation_time": 1555521994903044, 
@@ -105,7 +105,7 @@
         "info": {
             "originator": "pt11", 
             "name": "/tmp/tmp5xipeK", 
-            "parent": "None", 
+            "parent": "null", 
             "timestamp": 1555530483709952, 
             "death_time": 0, 
             "creation_time": 1555530483709952, 
@@ -124,7 +124,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555530483709952, 
-                    "id": "6313292a-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f8e-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -137,7 +137,7 @@
         "info": {
             "originator": "pt11", 
             "name": "/tmp/tmpDPo0Bu", 
-            "parent": "None", 
+            "parent": "null", 
             "timestamp": 1555521997908547, 
             "death_time": 0, 
             "creation_time": 1555521997908547, 
@@ -156,7 +156,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555521997908547, 
-                    "id": "6313292d-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f91-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -168,8 +168,63 @@
     {
         "info": {
             "originator": "pt11", 
+            "name": "Process A", 
+            "parent": "null", 
+            "timestamp": 1555530487715264, 
+            "death_time": 1555530487715264, 
+            "creation_time": 1555530477699009, 
+            "type": "proc", 
+            "id": "62537f8e-621c-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1555530477699009
+            }, 
+            {
+                "timestamp": 1555530478703814
+            }, 
+            {
+                "timestamp": 1555530483709952
+            }, 
+            {
+                "timestamp": 1555530487715264
+            }, 
+            {
+                "timestamp": 1555530483708358
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555530483709952, 
+                    "id": "62537f8e-621c-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555530487715264
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555530483709952, 
+                    "id": "62537f8e-621c-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555530487715264
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": []
+    }, 
+    {
+        "info": {
+            "originator": "pt11", 
             "name": "/tmp/tmpsvsMqV", 
-            "parent": "None", 
+            "parent": "null", 
             "timestamp": 1555530485712805, 
             "death_time": 0, 
             "creation_time": 1555530485712805, 
@@ -189,73 +244,12 @@
         "info": {
             "originator": "pt11", 
             "name": "Process B", 
-            "parent": "6313292a-621b-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1555530483708358, 
-            "death_time": 1555530483708358, 
-            "creation_time": 1555530479705053, 
-            "type": "proc", 
-            "id": "6313292b-621b-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1555530479705053
-            }, 
-            {
-                "timestamp": 1555530481707643
-            }, 
-            {
-                "timestamp": 1555530483708358
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555530481707643, 
-                    "id": "6313292b-621b-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1555530483708358
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555530481707643, 
-                    "id": "6313292b-621b-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555530483708358
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1555530483708358, 
-                    "id": "6313292a-621b-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1555530483708358
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "pt11", 
-            "name": "Process B", 
-            "parent": "6313292d-621b-11e9-834c-5cf3fc3cee48", 
+            "parent": "62537f91-621c-11e9-834c-5cf3fc3cee48", 
             "timestamp": 1555521997906773, 
             "death_time": 1555521997906773, 
             "creation_time": 1555521993901884, 
             "type": "proc", 
-            "id": "6313292c-621b-11e9-834c-5cf3fc3cee48"
+            "id": "62537f90-621c-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
@@ -273,7 +267,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555521995904410, 
-                    "id": "6313292c-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f90-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
@@ -284,7 +278,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555521995904410, 
-                    "id": "6313292c-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f90-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -298,7 +292,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555521997906773, 
-                    "id": "6313292d-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f91-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
@@ -311,67 +305,12 @@
         "info": {
             "originator": "pt11", 
             "name": "Process A", 
-            "parent": "None", 
-            "timestamp": 1555530487715264, 
-            "death_time": 1555530487715264, 
-            "creation_time": 1555530477699009, 
-            "type": "proc", 
-            "id": "6313292a-621b-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1555530477699009
-            }, 
-            {
-                "timestamp": 1555530478703814
-            }, 
-            {
-                "timestamp": 1555530483709952
-            }, 
-            {
-                "timestamp": 1555530483708358
-            }, 
-            {
-                "timestamp": 1555530487715264
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555530483709952, 
-                    "id": "6313292a-621b-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1555530487715264
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555530483709952, 
-                    "id": "6313292a-621b-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555530487715264
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": []
-    }, 
-    {
-        "info": {
-            "originator": "pt11", 
-            "name": "Process A", 
-            "parent": "None", 
+            "parent": "null", 
             "timestamp": 1555522001913089, 
             "death_time": 1555522001913089, 
             "creation_time": 1555521991896026, 
             "type": "proc", 
-            "id": "6313292d-621b-11e9-834c-5cf3fc3cee48"
+            "id": "62537f91-621c-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
@@ -395,7 +334,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555521997908547, 
-                    "id": "6313292d-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f91-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
@@ -406,7 +345,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555521997908547, 
-                    "id": "6313292d-621b-11e9-834c-5cf3fc3cee48"
+                    "id": "62537f91-621c-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -416,5 +355,66 @@
         ], 
         "properties": [], 
         "descendant": []
+    }, 
+    {
+        "info": {
+            "originator": "pt11", 
+            "name": "Process B", 
+            "parent": "62537f8e-621c-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1555530483708358, 
+            "death_time": 1555530483708358, 
+            "creation_time": 1555530479705053, 
+            "type": "proc", 
+            "id": "62537f8f-621c-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1555530479705053
+            }, 
+            {
+                "timestamp": 1555530481707643
+            }, 
+            {
+                "timestamp": 1555530483708358
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555530481707643, 
+                    "id": "62537f8f-621c-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555530483708358
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555530481707643, 
+                    "id": "62537f8f-621c-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555530483708358
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1555530483708358, 
+                    "id": "62537f8e-621c-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1555530483708358
+                }
+            }
+        ]
     }
 ]

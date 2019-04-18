@@ -822,7 +822,7 @@ class patricia_object_info:
                 self.container = container
 
         def json(self):
-            f = lambda parent : parent.object if parent else None
+            f = lambda parent : parent.object if parent else 'null'
             return {'id': str(self.object),
                     'name': self.name, 
                     'type': self.type, 
