@@ -1197,10 +1197,10 @@ class patricia_object:
                            
 
                     if self_descendant_version != None:
-                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} and ts<{} ALLOW FILTERING;""".format(self.id, version, descendant_version);
+                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>={} and ts<{} ALLOW FILTERING;""".format(self.id, version, descendant_version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                     else:
-                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>{} ALLOW FILTERING;""".format(self.id, version);
+                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>={} ALLOW FILTERING;""".format(self.id, version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                             
                     if len(query_res._current_rows) <= 0:
