@@ -1197,10 +1197,10 @@ class patricia_object:
                            
 
                     if self_descendant_version != None:
-                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>={} and ts<{} ALLOW FILTERING;""".format(self.id, version, descendant_version);
+                        select_ancestry_query = """SELECT * from flow where id_p={} and ts>={} and ts<{} ALLOW FILTERING;""".format(self.id, version, descendant_version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                     else:
-                        select_ancestry_query = """SELECT id_c, type, ts from flow where id_p={} and ts>={} ALLOW FILTERING;""".format(self.id, version);
+                        select_ancestry_query = """SELECT * from flow where id_p={} and ts>={} ALLOW FILTERING;""".format(self.id, version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                             
                     if len(query_res._current_rows) <= 0:
@@ -1208,7 +1208,9 @@ class patricia_object:
 
                     for row in query_res._current_rows:
                         category_type = get_dependency_category(int(row.type))
-                        if category_type == DEPENDENCY_CATEGORY_DATA and (flags & A_NO_DATA_DEPENDENCIES) != 0:
+                        if row.id_p == row.id_c:
+                            print("Do not add entry")
+                        elif category_type == DEPENDENCY_CATEGORY_DATA and (flags & A_NO_DATA_DEPENDENCIES) != 0:
                             print("Do not add entry")
                         elif category_type == DEPENDENCY_CATEGORY_CONTROL and (flags & A_NO_CONTROL_DEPENDENCIES) != 0:
                             print ("Do not add entry")
