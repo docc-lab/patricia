@@ -1159,7 +1159,7 @@ class patricia_object:
                          print("Do not add entry")
                      elif category_type == DEPENDENCY_CATEGORY_CONTROL and (flags & A_NO_CONTROL_DEPENDENCIES) != 0:
                          print ("Do not add entry")
-                     else :
+                     elif self_last_version_entry.id_c != self_last_version_entry.id_p :
 
                          a = patricia_ancestor(parent.id, parent.specific_version(self_last_version_entry.ts).version,
                              self.id, self_last_version_entry.ts,
