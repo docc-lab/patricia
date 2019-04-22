@@ -23,7 +23,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942300193273, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -34,7 +34,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942306203801, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -70,185 +70,11 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555942303199977, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
                     "timestamp": 1555942301197569
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "pt11", 
-            "name": "Process B", 
-            "parent": "8e4ce512-6519-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1555942306203801, 
-            "death_time": 1555942306203801, 
-            "creation_time": 1555942302198809, 
-            "type": "proc", 
-            "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1555942302198809
-            }, 
-            {
-                "timestamp": 1555942303199977
-            }, 
-            {
-                "timestamp": 1555942306203801
-            }, 
-            {
-                "timestamp": 1555942305202653
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942300193273, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942302198809
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942302198809, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1555942302198809
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942301197569, 
-                    "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942303199977
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942302198809, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942303199977
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942305202653, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1555942306203801
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942305202653, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942306203801
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942304201424, 
-                    "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942305202653
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942303199977, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942305202653
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1555942303199977, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942302198809
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1555942305202653, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1555942303199977
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1555942304201424, 
-                    "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1555942303199977
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1555942306203801, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1555942306203801
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1555942306203801, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1555942305202653
                 }
             }
         ]
@@ -274,7 +100,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942303199977, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -288,7 +114,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555942308207819, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -299,7 +125,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555942305202653, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -317,14 +143,11 @@
             "death_time": 1555942310210242, 
             "creation_time": 1555942300193273, 
             "type": "proc", 
-            "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+            "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
                 "timestamp": 1555942300193273
-            }, 
-            {
-                "timestamp": 1555942306203801
             }, 
             {
                 "timestamp": 1555942308207819
@@ -333,21 +156,13 @@
                 "timestamp": 1555942310210242
             }, 
             {
+                "timestamp": 1555942306203801
+            }, 
+            {
                 "timestamp": 1555942309209101
             }
         ], 
         "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1555942305202653, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1555942306203801
-                }
-            }, 
             {
                 "direction": "ancestors", 
                 "other": {
@@ -363,7 +178,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942306203801, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
@@ -374,7 +189,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942309209101, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
@@ -385,11 +200,22 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942309209101, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
                     "timestamp": 1555942310210242
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942305202653, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1555942306203801
                 }
             }, 
             {
@@ -407,7 +233,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942308207819, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -421,18 +247,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555942306203801, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1555942300193273
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1555942302198809, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -443,7 +258,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555942302198809, 
-                    "id": "8e4ce513-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
@@ -464,8 +279,19 @@
             {
                 "direction": "descendants", 
                 "other": {
+                    "timestamp": 1555942309209101, 
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555942308207819
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
                     "timestamp": 1555942308207819, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -497,23 +323,175 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1555942309209101, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1555942310210242, 
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1555942308207819
+                    "timestamp": 1555942309209101
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "pt11", 
+            "name": "Process B", 
+            "parent": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1555942306203801, 
+            "death_time": 1555942306203801, 
+            "creation_time": 1555942302198809, 
+            "type": "proc", 
+            "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1555942302198809
+            }, 
+            {
+                "timestamp": 1555942303199977
+            }, 
+            {
+                "timestamp": 1555942305202653
+            }, 
+            {
+                "timestamp": 1555942306203801
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942300193273, 
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555942302198809
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942301197569, 
+                    "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942302198809, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942304201424, 
+                    "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555942305202653
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942303199977, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555942305202653
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942305202653, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942305202653, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1555942303199977, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555942302198809
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1555942310210242, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1555942305202653, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1555942304201424, 
+                    "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1555942306203801, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1555942309209101
+                    "timestamp": 1555942305202653
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1555942306203801, 
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1555942306203801
                 }
             }
         ]
@@ -539,7 +517,7 @@
                 "direction": "ancestors", 
                 "other": {
                     "timestamp": 1555942306203801, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
@@ -553,7 +531,7 @@
                 "direction": "descendants", 
                 "other": {
                     "timestamp": 1555942309209101, 
-                    "id": "8e4ce512-6519-11e9-834c-5cf3fc3cee48"
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {

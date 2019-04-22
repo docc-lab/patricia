@@ -1145,42 +1145,43 @@ class patricia_object:
 
                 l = []
                 if direction == D_ANCESTORS:
-                     select_ancestry_query = """SELECT * from flow where id_c={} and ts<={} ALLOW FILTERING;""".format(self.id, str(version));
+                     select_ancestry_query = """SELECT * from flow where id_c={} and ts<={} and ts>={} ALLOW FILTERING;""".format(self.id, str(version), str(self.specific_version(version).version));
                      query_res = _patricia_connection.session.execute(select_ancestry_query);
                      if len(query_res._current_rows) <= 0:
                         return l;
-                
-                     
-                     p_v = [(row.ts, row.id_p, int(row.type)) for row in query_res._current_rows]
-                     self_entry = max(p_v, key=lambda x:x[0])
-                
-                     parent = patricia_object(self_entry[1]);
-                     category_type = get_dependency_category(int(self_entry[2]))
+               
+                     query_res._current_rows.sort(key=lambda tr: tr.ts) 
+                     self_last_version_entry = max(query_res._current_rows, key=lambda row:row.ts)
+                     print(self_last_version_entry)
+                     parent = patricia_object(self_last_version_entry.id_p);
+                     category_type = get_dependency_category(int(self_last_version_entry.type))
                      if category_type == DEPENDENCY_CATEGORY_DATA and (flags & A_NO_DATA_DEPENDENCIES) != 0:
                          print("Do not add entry")
                      elif category_type == DEPENDENCY_CATEGORY_CONTROL and (flags & A_NO_CONTROL_DEPENDENCIES) != 0:
                          print ("Do not add entry")
                      else :
 
-                         a = patricia_ancestor(self_entry[1], parent.specific_version(self_entry[0]).version,
-                             self.id, self_entry[0],
-                             self_entry[2], direction)
+                         a = patricia_ancestor(parent.id, parent.specific_version(self_last_version_entry.ts).version,
+                             self.id, self_last_version_entry.ts,
+                             self_last_version_entry.type, direction)
                          l.append(a)
-                     
-                     p_v.remove(self_entry)
 
-                     if len(p_v) <= 0:
+
+                     
+                     query_res._current_rows.remove(self_last_version_entry)
+
+                     if len(query_res._current_rows) <= 0:
                          return l;
 
-                     ancestry_entry = max(p_v, key=lambda x:x[0])
-                     category_type = get_dependency_category(int(ancestry_entry[2]))
+                     ancestry_entry = max(query_res._current_rows, key=lambda row:row.ts)
+                     category_type = get_dependency_category(int(ancestry_entry.type))
                      if category_type == DEPENDENCY_CATEGORY_DATA and (flags & A_NO_DATA_DEPENDENCIES) != 0:
                          print("Do not add entry")
                      elif category_type == DEPENDENCY_CATEGORY_CONTROL and (flags & A_NO_CONTROL_DEPENDENCIES) != 0:
                          print ("Do not add entry")
                      else :
-                         a = patricia_ancestor(self.id, ancestry_entry[0], self.id, self_entry[0], 
-                             ancestry_entry[2], direction)
+                         a = patricia_ancestor(self.id, ancestry_entry.ts, self.id, self_last_version_entry.ts, 
+                             ancestry_entry.type, direction)
                          l.append(a)
                  
                 else:

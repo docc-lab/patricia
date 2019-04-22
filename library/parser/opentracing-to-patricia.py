@@ -92,5 +92,5 @@ for tr in rows._current_rows:
                 c_obj.add_parent(p_obj);
                 deathtime =  long(tr.start_time) + long(tr.duration)
                 c_obj.control_flow_from(p_obj, type=Patricia.CONTROL_START, timestamp = tr.start_time)
-                c_obj.data_flow_from(p_obj, type=Patricia.DATA_INPUT, timestamp=tr.start_time)
+                #c_obj.data_flow_from(p_obj, type=Patricia.DATA_INPUT, timestamp=tr.start_time)
                 c_obj.control_flow_to(p_obj, type=Patricia.CONTROL_OP, timestamp = deathtime)
