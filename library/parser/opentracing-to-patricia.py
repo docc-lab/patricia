@@ -74,11 +74,10 @@ for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
             if shared_obj.info().creation_time > long(log.ts):
                 shared_obj.update_birthday(long(log.ts))
 
-            if method == 'write':
+            if method == 'write' or method == 'update':
                 shared_obj.data_flow_from(obj, type=Patricia.DATA_INPUT, timestamp=long(log.ts))
-            elif method == 'update':
-                shared_obj.data_flow_from(shared_obj, type=Patricia.DATA_TRANSLATION, timestamp=long(log.ts))
             elif method == 'read':
+                print("\tread: " + str(obj))
                 shared_obj.data_flow_to(obj, type=Patricia.DATA_INPUT, timestamp=long(log.ts))
 
 
