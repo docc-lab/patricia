@@ -191,6 +191,17 @@
                     "timestamp": 1555942309209101, 
                     "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
                 }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555942310210242
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942309209101, 
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                }, 
                 "type": "data input", 
                 "base": {
                     "timestamp": 1555942310210242
@@ -401,6 +412,17 @@
                 "type": "data input", 
                 "base": {
                     "timestamp": 1555942305202653
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1555942305202653, 
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1555942306203801
                 }
             }, 
             {
