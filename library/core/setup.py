@@ -54,7 +54,7 @@ create_table_query = """CREATE TABLE flow(
                         type text, 
                         event text, 
                         ts bigint,
-                        PRIMARY KEY (id_p, id_c, ts));"""
+                        PRIMARY KEY (id_p, id_c, type, ts));"""
 raw = session.execute(create_table_query);
 
 

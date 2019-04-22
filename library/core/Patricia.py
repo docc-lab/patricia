@@ -606,7 +606,7 @@ class patricia_connection:
                     print(query)
                     ret = self.session.execute(query, params);
 		else:
-                    query = """SELECT * from object where originator='{}' and name='{}' and type='{}';""".format(originator, name, otype);
+                    query = """SELECT * from object where originator='{}' and name='{}' and type='{}' ALLOW FILTERIN;""".format(originator, name, otype);
                     print(query)
                     ret = self.session.execute(query);
                     if len(ret._current_rows) > 0:
@@ -758,7 +758,7 @@ class patricia_connection:
 		Return all objects that have the specified originator, name,
 		and type (they might differ by container).
 		'''
-                select_all_query = """SELECT * from object where originator='{}' and name='{}' and type='{}';""".format(originator, name, type);
+                select_all_query = """SELECT * from object where originator='{}' and name='{}' and type='{}' ALLOW FILTERING;""".format(originator, name, type);
                 query_res = self.session.execute(select_all_query);
 
                 l = []
@@ -866,6 +866,10 @@ class patricia_object:
                 Return a string representation of this object
                 '''
                 return str(self.id)
+
+        def update_birthday(self, birthday):
+            query = """UPDATE object SET birthday = {} WHERE id = {};""".format(birthday, str(self.id))
+            query_res = _patricia_connection.session.execute(query);
 
         def add_parent(self, parent):
             query = """UPDATE object SET parent_id = {} WHERE id = {};""".format(str(parent.id), str(self.id))
@@ -1136,13 +1140,12 @@ class patricia_object:
 		'''
 		Return a list of cpl_ancestor objects
 		'''
-                if version == None:
+                if version is None:
                     version = self.version();
 
                 l = []
                 if direction == D_ANCESTORS:
-                    
-                     select_ancestry_query = """SELECT * from flow where id_c={} and ts<={} ALLOW FILTERING;""".format(self.id, version);
+                     select_ancestry_query = """SELECT * from flow where id_c={} and ts<={} ALLOW FILTERING;""".format(self.id, str(version));
                      query_res = _patricia_connection.session.execute(select_ancestry_query);
                      if len(query_res._current_rows) <= 0:
                         return l;
@@ -1196,8 +1199,8 @@ class patricia_object:
                             l.append(a)
                            
 
-                    if self_descendant_version != None:
-                        select_ancestry_query = """SELECT * from flow where id_p={} and ts>={} and ts<{} ALLOW FILTERING;""".format(self.id, version, descendant_version);
+                    if self_descendant_version:
+                        select_ancestry_query = """SELECT * from flow where id_p={} and ts>={} and ts<{} ALLOW FILTERING;""".format(self.id, version, self_descendant_version);
                         query_res = _patricia_connection.session.execute(select_ancestry_query);
                     else:
                         select_ancestry_query = """SELECT * from flow where id_p={} and ts>={} ALLOW FILTERING;""".format(self.id, version);

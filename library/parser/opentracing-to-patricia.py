@@ -41,6 +41,9 @@ col_names =  ['trace_id', 'span_id', 'object']
 pat_object_df = pd.DataFrame(columns = col_names)
 pat_object_df.set_index(['trace_id', 'span_id'], inplace=True)
 
+
+rows._current_rows.sort(key=lambda tr: tr.start_time)
+
 for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
     if (not pat_object_df.empty) and (pat_object_df['trace_id']==tr['trace_id']) and (pat_object_df['span_id']== tr['span_id']):
         continue;
@@ -68,12 +71,15 @@ for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
                     method = field.value_string
                 
             shared_obj =  patricia.get_object(tr.process_service_name, name, otype, creation_time=long(log.ts))
+            if shared_obj.info().creation_time > long(log.ts):
+                shared_obj.update_birthday(long(log.ts))
+
             if method == 'write':
-                shared_obj.data_flow_to(obj, type=Patricia.DATA_INPUT, timestamp=long(log.ts))
+                shared_obj.data_flow_from(obj, type=Patricia.DATA_INPUT, timestamp=long(log.ts))
             elif method == 'update':
                 shared_obj.data_flow_from(shared_obj, type=Patricia.DATA_TRANSLATION, timestamp=long(log.ts))
-#            elif method == 'read':
- #               shared_obj.data_flow_from(obj, type=Patricia.DATA_GENERIC, )
+            elif method == 'read':
+                shared_obj.data_flow_to(obj, type=Patricia.DATA_INPUT, timestamp=long(log.ts))
 
 
 for tr in rows._current_rows:
@@ -87,4 +93,5 @@ for tr in rows._current_rows:
                 c_obj.add_parent(p_obj);
                 deathtime =  long(tr.start_time) + long(tr.duration)
                 c_obj.control_flow_from(p_obj, type=Patricia.CONTROL_START, timestamp = tr.start_time)
+                c_obj.data_flow_from(p_obj, type=Patricia.DATA_INPUT, timestamp=tr.start_time)
                 c_obj.control_flow_to(p_obj, type=Patricia.CONTROL_OP, timestamp = deathtime)
