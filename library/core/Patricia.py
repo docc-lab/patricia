@@ -1193,7 +1193,7 @@ class patricia_object:
                         self_type = query_res._current_rows[0].type;
                         id_p = query_res._current_rows[0].id_p;
                         
-                        if self_descendant_version != None:
+                        if self_descendant_version != None and version != self_descendant_version:
                             a = patricia_ancestor(self.id, version,
                                     self.id, self_descendant_version,
                                     self_type, direction)
