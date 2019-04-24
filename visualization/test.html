@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div.svg-container {
+  height: 100vh;
+  width: 100%;
+  background-color: #DDD;
+}
+
+svg.chart {
+  background-color: #F5F5F5;
+  height: 99vh;
+  width: 100%;
+}
+
+.time-axis {
+}
+
+.time-axis-background {
+  fill: #F5F5F5;
+  opacity: 0.75;
+}
+
+.requests rect {
+  fill: #c5e3ed;
+  stroke: #4ba9c8;
+}
+
+.requests text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: start;
+}
+
+.spans rect {
+  fill: #4ba9c8;
+}
+
+.spans text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: start;
+}
+
+.span-selected rect {
+  fill: #78a4c8;
+  stroke: white;
+}
+
+.span-selected circle {
+  fill: red !important;
+  stroke: white;
+}
+
+.spanVersions circle {
+  stroke: black;
+  stroke-width: 1px;
+  fill: #3c87a0;
+}
+
+.artifactVersions circle {
+  fill: black;
+}
+
+.artifact-selected circle {
+  fill: red;
+}
+
+.artifacts text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.artifact-selected text {
+  fill: red;
+  font-weight: bold;
+}
+
+.relationship-path {
+  stroke: black;
+  fill: none;
+}
+
+.relationship-version {
+  stroke: #4ba9c8;
+  stroke-dasharray: 4;
+  fill: none;
+}
+
+.relationship-extra {
+  stroke: #c5e3ed;
+  stroke-dasharray: 4;
+  fill: none;
+}
+
+.relationship-selected-ancestors {
+  /*stroke: #78a4c8 !important;*/
+  stroke: blue !important;
+  stroke-width: 2;
+}
+
+.relationship-selected-descendants {
+  /*stroke: #78a4c8 !important;*/
+  stroke: red !important;
+  stroke-width: 2;
+}
+
+.relationship-selected-internal {
+  /*stroke: #78a4c8 !important;*/
+  stroke: purple !important;
+  stroke-width: 2;
+}
+
+.arrowhead {
+  fill: black;
+  stroke: black;
+}
+
+.arrowhead-reversed {
+  fill: black;
+  stroke: black;
+}
+
+.arrowhead-seleced-ancestors {
+  fill: blue;
+  stroke: darkblue;
+}
+
+.arrowhead-reversed-selected-ancestors {
+  fill: blue;
+  stroke: darkblue;
+}
+
+.arrowhead-seleced-descendants {
+  fill: red;
+  stroke: darkred;
+}
+
+.arrowhead-reversed-selected-descendants {
+  fill: red;
+  stroke: darkred;
+}
+
+.arrowhead-seleced-internal {
+  fill: purple;
+  stroke: #590059;
+}
+
+.arrowhead-reversed-selected-internal {
+  fill: purple;
+  stroke: #590059;
+}
+
+</style>
+
+<div id="container" class="svg-container">
+  <svg class="chart"></svg>
+</div>
+
+<script src="lib/d3.v5.min.js" charset="utf-8"></script>
+<script src="lib/jquery-3.4.0.min.js" charset="utf-8"></script>
+<script>
+
+
+/*
+ * Configuration
+ */
+
+// The visuals
+
+var rowHeight = 20;
+var minHorizontalBreak = 1;
+var origin = { x: 40, y: 40 };
+var timeAxisMargin = 10;
+var elbowedRelationships = true;
+
+var rescaleTimestamps = true;
+
+var spanVerticalVersioning = true;
+var drawControlRelationships = true;
+var drawSpanVersions = true;
+var drawSpanVersionRelationships = true;
+
+
+// Filtering
+
+var ignoreIntraObjectRelationships = true;
+var ignoreControlRelationships = false;
+
+
+/*
+ * Data
+ */
+
+var requestsSorted = [];
+var requestsMap = {};
+var spansSorted = [];
+var spansMap = {};
+
+var artifactsSorted = [];
+var artifactsMap = {};
+var artifactVersions = [];
+var artifactVersionsMap = {};
+var spanVersions = [];
+var spanVersionsMap = {};
+
+var relationships = [];
+
+
+
+/****************************************************************************/
+/* SET UP THE SVG                                                           */
+/****************************************************************************/
+
+var svg = d3.select("svg");
+
+
+/*
+ * SVG Definitions
+ */
+
+var defs = svg.append("defs");
+
+["", "-selected-ancestors", "-selected-descendants",
+ "-selected-internal"].forEach(type => {
+  defs.append("marker")
+  	.attr("id", "arrowhead" + type)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 5)
+  	.attr("refY", 0)
+    .attr("markerWidth", 7)
+    .attr("markerHeight", 7)
+    .attr("markerUnits", "userSpaceOnUse")
+    .attr("orient", "auto")
+    .append("path")
+  	.attr("d", "M0,-5L10,0L0,5L0,-5")
+    .attr("class", "arrowhead" + type);
+
+  defs.append("marker")
+  	.attr("id", "arrowhead-reversed" + type)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 5)
+  	.attr("refY", 0)
+    .attr("markerWidth", 7)
+    .attr("markerHeight", 7)
+    .attr("markerUnits", "userSpaceOnUse")
+    .attr("orient", "auto")
+    .append("path")
+  	.attr("d", "M0,-5L10,0L0,5L0,-5")
+    .attr("class", "arrowhead-reversed" + type);
+});
+
+defs.append("marker")
+	.attr("id", "arrowhead-start")
+  .attr("viewBox", "0 -5 10 10")
+  .attr("refX", 5)
+	.attr("refY", 0)
+  .attr("markerWidth", 7)
+  .attr("markerHeight", 7)
+  .attr("markerUnits", "userSpaceOnUse")
+  .attr("orient", "auto")
+  .append("path")
+	.attr("d", "M10,-5L0,0L10,5");
+
+
+// Background for text
+// https://stackoverflow.com/questions/35075693/d3-add-filter-as-background-to-svg-element
+
+var filter = defs.append("filter")
+  .attr("id", "textBackground")
+  .attr("x", 0).attr("y", 0)
+  .attr("width", 1).attr("height", 1);
+filter.append("feFlood")
+  .attr("flood-color", svg.style("background-color"))
+  .attr("flood-opacity", "0.75")
+  .attr("result","txtBackground");
+var filterMerge = filter.append("feMerge");
+filterMerge.append("feMergeNode").attr("in", "txtBackground");
+filterMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
+
+//const transition = svg.transition().duration(150);
+
+
+/*
+ * Plot area, zoom, and pan
+ */
+
+var lastZoomY = 0;
+const zoom = d3.zoom().scaleExtent([1, 1048576]).on("zoom", () => {
+
+  if (d3.event.sourceEvent != null && d3.event.sourceEvent.type == "wheel") {
+    timelineScaleRelative.range([0, Math.round(initialTimelineRange
+      * d3.event.transform.k)]);
+    timeAxis.scale(timelineScaleRelative);
+    svg.selectAll(".time-axis").call(timeAxis);
+    update(false);
+    d3.event.transform.y = lastZoomY;
+  }
+
+  d3.event.transform.x = Math.min(0, d3.event.transform.x);
+  d3.event.transform.y = Math.min(0, d3.event.transform.y);
+  plotGraphicsMiddle.attr("transform",
+    "translate(" + d3.event.transform.x + ", " + d3.event.transform.y + ")");
+
+  plotGraphicsOuter.selectAll(".time-axis")
+    .attr("transform", "translate(" + (origin.x + d3.event.transform.x)
+      + ", " + (origin.y - timeAxisMargin) + ")")
+  lastZoomY = d3.event.transform.y;
+});
+
+var dragOffset = { x: 0, y: 0 };
+var dragBound = { x: 300, y: 0 };
+const drag = d3.drag()
+  .on("drag", d => {
+
+    dragOffset.x = Math.min(dragBound.x, dragOffset.x + d3.event.dx);
+    dragOffset.y = Math.min(dragBound.y, dragOffset.y + d3.event.dy);
+
+    plotGraphicsMiddle.attr("transform",
+      "translate(" + dragOffset.x + ", " + dragOffset.y + ")");
+    plotGraphicsOuter.select(".time-axis")
+      .attr("transform", "translate(" + (origin.x + dragOffset.x)
+        + ", " + (origin.y - timeAxisMargin) + ")")
+  })
+
+var wheelZoomLevel = 0;
+const wheel = () => {
+
+  var zoomIn = d3.event.deltaY < 0;
+  //if (!zoomIn && wheelZoomLevel <= 0) return;
+
+  // Figure out where we are in the axis
+
+  var axis = plotGraphicsOuter.select(".time-axis");
+  var oldAxisLength = axis.node().getBoundingClientRect().width;
+
+  var clientX = d3.event.clientX;
+  var axisX = clientX - axis.node().getBoundingClientRect().x;
+  var logicalX = timelineScaleRelative.invert(axisX)
+    / timelineScaleRelative.domain()[1];
+
+
+  // Zoom, and ensure that logicalX stays in the middle
+
+  wheelZoomLevel += zoomIn ? 1 : -1;
+  //var k = wheelZoomLevel >= 0 ? wheelZoomLevel + 1 : -1.0 / wheelZoomLevel;
+  var k = Math.pow(0.75, wheelZoomLevel);
+
+  var oldAxisRange = timelineScaleRelative.range()[1];
+  timelineScaleRelative.range([0, Math.round(initialTimelineRange * k)]);
+  var newAxisRange = timelineScaleRelative.range()[1];
+
+  timeAxis.scale(timelineScaleRelative);
+  axis.call(timeAxis);
+  var newAxisLength = axis.node().getBoundingClientRect().width;
+
+  dragOffset.x = Math.min(dragBound.x,
+    dragOffset.x - (newAxisLength - oldAxisLength) * logicalX);
+
+  plotGraphicsMiddle.attr("transform",
+    "translate(" + dragOffset.x + ", " + dragOffset.y + ")");
+  plotGraphicsOuter.select(".time-axis")
+    .attr("transform", "translate(" + (origin.x + dragOffset.x)
+      + ", " + (origin.y - timeAxisMargin) + ")")
+
+
+  // Update
+
+  update(false);
+}
+
+
+var plotBackground = svg.append("rect")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .style("fill", "none")
+    .style("pointer-events", "all")
+    .on("click", () => selectObject(null));
+
+var plotArea = d3.select(".chart")
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  //.call(zoom)
+  .call(drag).on("wheel", wheel)
+  .on("dblclick.zoom", null);
+
+var plotGraphicsOuter = plotArea.append("g");
+var plotGraphicsMiddle = plotGraphicsOuter.append("g");
+
+
+/*
+ * Contents
+ */
+
+// Dummy timeline scale
+var initialTimelineRange = Math.max(100, parseInt(svg.style("width")) - origin.x * 2);
+var timelineScaleRelative = d3.scaleLinear()
+  .domain([0, 30e+6])
+  .range([0, initialTimelineRange]);
+var timelineScaleBase = 0;
+const timelineScaleAbsolute = t => timelineScaleRelative(t - timelineScaleBase);
+
+var plotGraphics = plotGraphicsMiddle.append("g")
+  .attr("transform", "translate(" + origin.x + ", " + origin.y + ")");
+
+var requestsArea = plotGraphics.append("g").attr("class", "requests");
+var spansArea = plotGraphics.append("g").attr("class", "spans");
+var spanVerticalVersioningAdditionalRelationshipsArea
+  = plotGraphics.append("g").attr("class", "relationships-extra");
+var versionRelationshipsArea = plotGraphics.append("g").attr("class", "relationships-versions");
+var spanVersionsArea = plotGraphics.append("g").attr("class", "spanVersions");
+var relationshipsArea = plotGraphics.append("g").attr("class", "relationships");
+var spanLabelsArea = plotGraphics.append("g").attr("class", "spans");
+var artifactsArea = plotGraphics.append("g").attr("class", "artifacts");
+var artifactVersionsArea = plotGraphics.append("g").attr("class", "artifactVersions");
+
+var timeAxis = d3.axisTop()
+  .scale(timelineScaleRelative)
+  .tickFormat(t => {
+    if (rescaleTimestamps) return "";
+    var seconds = Math.round((t - timeAxis.scale().domain()[0]) / 1e+6);
+    var minutes = Math.floor(seconds / 60);
+    if (minutes == 0) {
+      return "" + seconds;
+    }
+    else {
+      seconds -= minutes * 60;
+      var s = "" + seconds;
+      if (s.length == 1) s = "0" + s;
+      var hours = Math.floor(minutes / 60);
+      if (hours == 0) {
+        return "" + minutes + ":" + s;
+      }
+      else {
+        minutes -= hours * 60;
+        var m = "" + minutes;
+        if (m.length == 1) m = "0" + m;
+        return "" + hours + ":" + m + ":" + s;
+      }
+    }
+  });
+
+plotGraphicsOuter.append("rect")
+  .attr("class", "time-axis-background")
+  .attr("transform", "translate(0, 0)")
+  .attr("width", "100%")
+  .attr("height", origin.y - timeAxisMargin / 2);
+
+plotGraphicsOuter.append("g")
+  .attr("class", "time-axis")
+  .attr("transform", "translate(" + origin.x + ", " + (origin.y - timeAxisMargin) + ")")
+  .call(timeAxis);
+
+
+/****************************************************************************/
+/* DATA MODIFICATIONS                                                       */
+/****************************************************************************/
+
+/*
+ * Function: Add a version
+ */
+function addVersion(id, timestamp) {
+  if (id in artifactsMap) {
+    if (!(id in artifactVersionsMap)) {
+      artifactVersionsMap[id] = new Set();
+    }
+    if (!artifactVersionsMap[id].has(timestamp)) {
+      artifactVersionsMap[id].add(timestamp);
+      artifactVersions.push({
+        id: id,
+        timestamp: timestamp
+      });
+    }
+  }
+  else {
+    if (!(id in spanVersionsMap)) {
+      spanVersionsMap[id] = new Set();
+    }
+    if (!spanVersionsMap[id].has(timestamp)) {
+      spanVersionsMap[id].add(timestamp);
+      spanVersions.push({
+        id: id,
+        timestamp: timestamp
+      });
+    }
+  }
+}
+
+
+/*
+ * Function: Add a request
+ */
+function addRequest(request) {
+
+  if (request.death_time > 0) {
+    request.length = request.death_time - request.creation_time;
+    request.spanEndTime = request.death_time;
+  }
+  else {
+    request.length = 0;
+    request.spanEndTime = request.creation_time;
+  }
+
+  var index = d3.bisector(d => d.creation_time)
+    .right(requestsSorted, request.creation_time);
+  requestsSorted.splice(index, 0, request);
+  requestsMap[request.id] = request;
+
+  addVersion(request.id, request.creation_time);
+}
+
+
+/*
+ * Function: Add a span
+ */
+function addSpan(span) {
+
+  if (span.death_time > 0) {
+    span.length = span.death_time - span.creation_time;
+    span.spanEndTime = span.death_time;
+  }
+  else {
+    span.length = 0;
+    span.spanEndTime = span.creation_time;
+  }
+
+  var index = d3.bisector(d => d.creation_time)
+    .right(spansSorted, span.creation_time);
+  spansSorted.splice(index, 0, span);
+  spansMap[span.id] = span;
+
+  addVersion(span.id, span.creation_time);
+}
+
+
+/*
+ * Function: Add an artifact
+ */
+function addArtifact(artifact) {
+  var index = d3.bisector((d, x) => {
+    if (d.name < x.name) return -1;
+    if (d.name > x.name) return  1;
+    if (d.id   < x.id  ) return -1;
+    if (d.id   > x.id  ) return  1;
+    return 0;
+  }).right(artifactsSorted, artifact);
+  artifactsSorted.splice(index, 0, artifact);
+
+  artifactsMap[artifact.id] = artifact;
+
+  addVersion(artifact.id, artifact.creation_time);
+}
+
+
+/*
+ * Function: Add a relationship in the canonical format
+ */
+function addCanonicalRelationship(relationship) {
+  relationships.push(relationship);
+  addVersion(relationship.ancestor.id, relationship.ancestor.timestamp);
+  addVersion(relationship.descendant.id, relationship.descendant.timestamp);
+}
+
+
+/*
+ * Function: Add a relationship
+ */
+function addRelationship(baseId, r) {
+
+  var baseIsAncestor = true;
+  if (r.direction.startsWith("ancestor")) {
+    baseIsAncestor = false;
+  }
+  else {
+    baseIsAncestor = true;
+  }
+
+  var ancestor, descendant;
+  if (baseIsAncestor) {
+    ancestor   = { id: baseId    , timestamp: Number(r.base.timestamp ) };
+    descendant = { id: r.other.id, timestamp: Number(r.other.timestamp) };
+  }
+  else {
+    descendant = { id: baseId    , timestamp: Number(r.base.timestamp ) };
+    ancestor   = { id: r.other.id, timestamp: Number(r.other.timestamp) };
+  }
+
+  if (ancestor.timestamp > descendant.timestamp) {
+    console.warn("Data inconsistency");
+  }
+
+
+  // Use the canonical relationship format
+
+  var relationship = {
+    ancestor: ancestor,
+    descendant: descendant,
+    type: r.type
+  };
+
+  addCanonicalRelationship(relationship);
+}
+
+
+/*
+ * Load data
+ */
+function loadData(data) {
+
+  var minTimestampToLoad = 0;//1555530000715264;
+
+
+  // Add objects
+
+  var minTimestamp = Infinity;
+  var maxTimestamp = 0;
+
+  data.forEach(object => {
+
+    if (object.info.timestamp < minTimestampToLoad) return;
+
+
+    if (object.info.death_time > 0) {
+      minTimestamp = Math.min(minTimestamp, object.info.death_time);
+      maxTimestamp = Math.max(maxTimestamp, object.info.death_time);
+    }
+    minTimestamp = Math.min(minTimestamp, object.info.creation_time);
+    maxTimestamp = Math.max(maxTimestamp, object.info.creation_time);
+    minTimestamp = Math.min(minTimestamp, object.info.timestamp);
+    maxTimestamp = Math.max(maxTimestamp, object.info.timestamp);
+
+    if (object.info.parent == "None") object.info.parent = null;
+    if (object.info.parent == "null") object.info.parent = null;
+
+    if (object.info.type == "proc") {
+      if (object.info.parent == null) {
+        addRequest(object.info);
+      }
+      addSpan(object.info);
+    }
+    else {
+      addArtifact(object.info);
+    }
+  });
+
+
+  // Add relationships
+
+  data.forEach(object => {
+
+    if (object.info.timestamp < minTimestampToLoad) return;
+
+
+    // Add explicit relationships
+
+    object.ancestors.forEach(r => {
+      if (r.type != "version") {
+        if (ignoreIntraObjectRelationships) {
+          if (object.info.id == r.other.id) return;
+        }
+        if (ignoreControlRelationships) {
+          if (r.type.startsWith("control")) return;
+        }
+        addRelationship(object.info.id, r);
+      }
+    });
+
+
+    // Add version relationships
+
+    var timestamps = object.timestamps.map(t => Number(t.timestamp)).sort();
+    for (var i = 0; i < timestamps.length - 1; i++) {
+      addCanonicalRelationship({
+        ancestor: { id: object.info.id, timestamp: timestamps[i] },
+        descendant: { id: object.info.id, timestamp: timestamps[i + 1] },
+        type: "version"
+      });
+    }
+  });
+}
+
+
+/****************************************************************************/
+/* SELECT                                                                   */
+/****************************************************************************/
+
+var selectedObject = null;
+
+/*
+ * Function: Select an object
+ */
+function selectObject(d) {
+  selectedObject = d;
+  update(false);
+}
+
+
+/****************************************************************************/
+/* LAYOUT                                                                   */
+/****************************************************************************/
+
+var numRequestRows = 0;
+
+
+/*
+ * Function: The box layout algorithm
+ *
+ * Input attributes:
+ *   - creation_time
+ *   - length
+ * Output attributes:
+ *   - boxLayoutRow
+ */
+function doBoxLayout(boxesSorted) {
+  var lastTimestampPerRow = [];
+  for (var i = 0; i < boxesSorted.length; i++) {
+    if (i == 0) {
+      boxesSorted[i].boxLayoutRow = 0;
+      lastTimestampPerRow.push(boxesSorted[i].creation_time + boxesSorted[i].length);
+    }
+    else {
+      var found = false;
+      for (var r = 0; r < lastTimestampPerRow.length; r++) {
+        if (boxesSorted[i].creation_time + minHorizontalBreak >= lastTimestampPerRow[r]) {
+          boxesSorted[i].boxLayoutRow = r;
+          lastTimestampPerRow[r] = boxesSorted[i].creation_time + boxesSorted[i].length;
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        boxesSorted[i].boxLayoutRow = lastTimestampPerRow.length;
+        lastTimestampPerRow.push(boxesSorted[i].creation_time + boxesSorted[i].length);
+      }
+    }
+  }
+}
+
+
+/*
+ * Function: Rescale the X coordinates
+ *
+ * Input:
+ *   - inputSorted = the input values, sorted (undefined --> the unity)
+ *
+ * Output:
+ *   - rescale(n) = scale the value
+ */
+function rescale(inputSorted) {
+
+  if (inputSorted == undefined) {
+    return {
+      rescale: function(v) { return v; }
+    };
+  }
+
+  var range = inputSorted.length == 0
+    ? 0 : (inputSorted[inputSorted.length-1] - inputSorted[0]);
+  if (range == 0) range = 1;
+
+  var minDelta = range / 100;
+  var maxDelta = range / 10;
+
+  var outputSorted = Array(inputSorted.length);
+  var map = {};
+  if (inputSorted.length > 0) {
+    outputSorted[0] = inputSorted[0];
+    map[inputSorted[0]] = inputSorted[0];
+  }
+
+  var accumulator = 0;
+  for (var i = 1; i < inputSorted.length; i++) {
+    var v = inputSorted[i];
+    if (v != inputSorted[i-1]) {
+      var d = v - inputSorted[i-1];
+      if (d < 0) {
+        console.warn("The input to rescale() is not sorted");
+      }
+      if (d < minDelta) accumulator += minDelta - d;
+      if (d > maxDelta) accumulator += maxDelta - d;
+    }
+    outputSorted[i] = v + accumulator;
+    map[inputSorted[i]] = v + accumulator;
+  }
+
+  return {
+    _map: map,
+    rescale: function(v) {
+      if (v in this._map) {
+        return this._map[v];
+      }
+      else {
+        console.warn("Not in the rescale() map: " + v);
+        console.trace();
+        return v;
+      }
+    }
+  };
+}
+
+
+/*
+ * Function: Recompute the layout
+ */
+function recomputeLayout() {
+
+  // Rescale the timestamps
+
+  var allTimestamps = new Set();
+  spansSorted.forEach(span => {
+    allTimestamps.add(span.creation_time);
+    allTimestamps.add(span.spanEndTime);
+  });
+  spanVersions.forEach(v => allTimestamps.add(v.timestamp));
+  artifactsSorted.forEach(artifact => allTimestamps.add(artifact.creation_time));
+  artifactVersions.forEach(v => allTimestamps.add(v.timestamp));
+
+  var allTimestampsSorted = [...allTimestamps.values()].sort();
+  const timestampToCoordinate =
+    rescaleTimestamps ? rescale(allTimestampsSorted) : rescale();
+
+  spansSorted.forEach(span => {
+    span.beginCoordinate = timestampToCoordinate.rescale(span.creation_time);
+    span.endCoordinate = timestampToCoordinate.rescale(span.spanEndTime);
+    span.beginEndDelta = span.endCoordinate - span.beginCoordinate;
+  });
+
+  artifactsSorted.forEach(artifact => {
+    artifact.beginCoordinate = timestampToCoordinate.rescale(artifact.creation_time);
+  });
+
+  spanVersions.forEach(v => v.coordinate = timestampToCoordinate.rescale(v.timestamp));
+  artifactVersions.forEach(v => v.coordinate = timestampToCoordinate.rescale(v.timestamp));
+
+  for (var i = 0; i < relationships.length; i++) {
+    var r = relationships[i];
+    r.ancestor.coordinate = timestampToCoordinate.rescale(r.ancestor.timestamp);
+    r.descendant.coordinate = timestampToCoordinate.rescale(r.descendant.timestamp);
+  }
+
+
+  // Fix the scale
+
+  var minCoordinate = timestampToCoordinate.rescale(allTimestampsSorted[0]);
+  var maxCoordinate = timestampToCoordinate.rescale(allTimestampsSorted[allTimestampsSorted.length-1]);
+
+  timelineScaleBase = minCoordinate;
+  timelineScaleRelative
+    .domain([0, maxCoordinate - minCoordinate])
+    .nice();
+  timeAxis.scale(timelineScaleRelative);
+  svg.selectAll(".time-axis").call(timeAxis);
+
+
+  // Figure out the request (root span) and depth for each span, and figure out
+  // the height of each request. Figure out the child structure as well.
+
+  spansSorted.forEach(span => {
+
+    var p = span;
+    var depth = 0;
+
+    while (p.parent != null) {
+      p = spansMap[p.parent];
+      depth++;
+      if (depth > 1000) {
+        // Nice to have: Better infinite loop detection (for bad data)
+        throw "Possibly an infinite loop for object <" + span.id + ">";
+      }
+    }
+    span.rootSpan = p;
+    span.depth = depth;
+
+    if (p.parent != null) {
+      if (p.parent.children == undefined) p.parent.children = new Set();
+      p.parent.children.add(p);
+    }
+
+    if (span.rootSpan.height == undefined) span.rootSpan.height = 1;
+    span.rootSpan.height = Math.max(span.rootSpan.height, depth + 1);
+
+    if (span.rootSpan.spansMap == undefined) {
+      span.rootSpan.spansMap = {};
+    }
+    span.rootSpan.spansMap[span.id] = span;
+  });
+
+  requestsSorted.forEach(request => {
+    request.spansSorted = Object.values(request.spansMap).sort();
+  });
+
+
+  // Position the spans within requests
+
+  requestsSorted.forEach(request => {
+    doBoxLayout(request.spansSorted);
+    var maxLayoutRow = 0;
+    for (var i = 0; i < request.spansSorted.length; i++) {
+      var r = request.spansSorted[i].boxLayoutRow;
+      request.spansSorted[i].logicalSpanRow = r;
+      maxLayoutRow = Math.max(maxLayoutRow, r);
+      request.spansSorted[i].firstUiCoordinate
+        = request.spansSorted[i].beginCoordinate;
+    }
+    request.spanRows = maxLayoutRow + 1;
+  });
+
+
+  // Position the requests
+
+  doBoxLayout(requestsSorted);
+  var maxRequestLayoutRow = 0;
+  for (var i = 0; i < requestsSorted.length; i++) {
+    var r = requestsSorted[i].boxLayoutRow;
+    requestsSorted[i].logicalRow = r;
+    maxRequestLayoutRow = Math.max(maxRequestLayoutRow, r);
+    requestsSorted[i].firstUiCoordinate = requestsSorted[i].beginCoordinate;
+  }
+
+
+  // Request heights and on-screen rows
+
+  var rowHeights = Array(maxRequestLayoutRow + 1).fill(1);
+  requestsSorted.forEach(request => {
+    rowHeights[request.logicalRow]
+      = Math.max(rowHeights[request.logicalRow], request.spanRows);
+  });
+
+  var rowStarts = Array(rowHeights.length + 1).fill(0);
+  rowHeights.reduce((a, v, i) => rowStarts[i + 1] = a + v, 0);
+
+  requestsSorted.forEach(request => {
+    request.row = rowStarts[request.logicalRow];
+  });
+
+
+  // Position the spans within the requests
+
+  spansSorted.forEach(span => {
+    span.row = span.rootSpan.row + span.logicalSpanRow;
+  });
+
+
+  // Artifacts
+
+  var artifactsRowStart = rowStarts[rowHeights.length];
+  for (var i = 0; i < artifactsSorted.length; i++) {
+    artifactsSorted[i].row = artifactsRowStart + i;
+    artifactsSorted[i].firstUiCoordinate = artifactsSorted[i].beginCoordinate;
+  }
+
+
+  // Relationships
+
+  for (var i = 0; i < relationships.length; i++) {
+    if (relationships[i].descendant.id in artifactsMap) {
+      descendant = artifactsMap[relationships[i].descendant.id];
+      if (descendant.firstUiCoordinate > relationships[i].ancestor.coordinate) {
+        descendant.firstUiCoordinate = relationships[i].ancestor.coordinate;
+      }
+    }
+  }
+}
+
+
+/*
+ * Function: Get the row attribute given the ID
+ */
+function getRow(id) {
+  if (id in requestsMap) {
+    return requestsMap[id].row;
+  }
+  else if (id in spansMap) {
+    return spansMap[id].row;
+  }
+  else {
+    return artifactsMap[id].row;
+  }
+}
+
+
+/*
+ * Function: Update the visualization
+ */
+function update(updateLayout = true) {
+
+  if (updateLayout) recomputeLayout();
+
+
+  // Requests
+
+  requestsArea.selectAll("g")
+    .data(requestsSorted, d => d.id)
+    .join(
+      enter => {
+        var g = enter.append("g");
+        g.attr("transform", function(d, i) {
+          return "translate(" + timelineScaleAbsolute(d.beginCoordinate)
+            + "," + d.row * rowHeight + ")";
+        });
+        g.append("rect")
+          .attr("width", d => timelineScaleRelative(d.beginEndDelta))
+          .attr("height", d => d.spanRows * rowHeight - 1);
+        g.on("click", () => selectObject(null));
+        return g;
+      },
+      update => update.call(g => {
+        g.attr("transform", function(d, i) {
+          return "translate(" + timelineScaleAbsolute(d.beginCoordinate)
+            + "," + d.row * rowHeight + ")";
+        });
+        g.select("rect")
+          .attr("width", d => timelineScaleRelative(d.beginEndDelta))
+          .attr("height", d => d.spanRows * rowHeight - 1);
+        return g;
+      })
+    );
+
+
+  // Spans
+
+  spansArea.selectAll("g")
+    .data(spansSorted, d => d.id)
+    .join(
+      enter => {
+        var g = enter.append("g");
+        g.attr("transform", function(d, i) {
+          return "translate(" + timelineScaleAbsolute(d.beginCoordinate)
+            + "," + d.row * rowHeight + ")";
+        });
+        g.append("rect")
+          .attr("width", d => timelineScaleRelative(d.beginEndDelta))
+          .attr("height", d => rowHeight - 1);
+        g.on("click", d => selectObject(d));
+        return g;
+      },
+      update => update.call(g => {
+        g.attr("class", d => selectedObject == d ? "span-selected" : null);
+        g.attr("transform", function(d, i) {
+          return "translate(" + timelineScaleAbsolute(d.beginCoordinate)
+            + "," + d.row * rowHeight + ")";
+        });
+        g.select("rect")
+          .attr("width", d => timelineScaleRelative(d.beginEndDelta))
+          .attr("height", d => rowHeight - 1);
+        return g;
+      })
+    );
+
+  if (drawSpanVersions) {
+    spanVersionsArea.selectAll("g")
+      .data(spanVersions, d => d.id + d.timestamp)
+      .join(
+        enter => enter.append("g")
+                      .attr("transform", function(d, i) {
+                        return "translate(" + timelineScaleAbsolute(d.coordinate)
+                          + "," + (spansMap[d.id].row + 0.5) * rowHeight + ")";
+                        })
+                      .on("click", d => selectObject(d))
+                      .append("circle")
+                        .attr("cx", "0")
+                        .attr("cy", "0")
+                        .attr("r", "5px"),
+        update => update.call(update => update
+                          .attr("class", d => {
+                            if (selectedObject == null) return null;
+                            if (selectedObject == d) return "span-selected";
+                            if (selectedObject.id == d.id && ("name" in selectedObject)) {
+                              return "span-selected";
+                            }
+                            return null;
+                          })
+                          .attr("transform", function(d, i) {
+                            return "translate(" + timelineScaleAbsolute(d.coordinate)
+                              + "," + (spansMap[d.id].row + 0.5) * rowHeight + ")";
+                            }))
+      );
+  }
+
+  spanLabelsArea.selectAll("g")
+    .data(spansSorted, d => d.id)
+    .join(
+      enter => {
+        var g = enter.append("g");
+        g.attr("transform", function(d, i) {
+          return "translate(" + timelineScaleAbsolute(d.beginCoordinate)
+            + "," + d.row * rowHeight + ")";
+        });
+        g.append("svg")
+         .attr("height", rowHeight)
+         .attr("width", d => timelineScaleRelative(d.beginEndDelta))
+         .append("text")
+          .attr("x", ".35em")
+          .attr("y", rowHeight / 2)
+          .attr("dy", ".35em")
+          .text(d => d.name);
+        g.on("click", d => selectObject(d));
+        return g;
+      },
+      update => update.call(g => {
+        g.select("svg").attr("width", d => timelineScaleRelative(d.beginEndDelta));
+        g.attr("class", d => selectedObject == d ? "span-selected" : null);
+        g.attr("transform", function(d, i) {
+          return "translate(" + timelineScaleAbsolute(d.beginCoordinate)
+            + "," + d.row * rowHeight + ")";
+        });
+        return g;
+      })
+    );
+
+
+  // Relationships
+
+  const verticalRelationship = d => {
+  	if ((d.descendant.id in artifactsMap)
+  		&& (d.ancestor.id in spansMap)) return true;
+  	if ((d.descendant.id in spansMap) && (d.ancestor.id in spansMap)
+  		&& !d.type.startsWith("version")) return true;
+  	return false;
+  }
+
+  const relationshipToPath = d => {
+    var ax = timelineScaleAbsolute(d.ancestor.coordinate);
+    var dx = timelineScaleAbsolute(d.descendant.coordinate);
+    var ay = (0.5 + getRow(d.ancestor.id)) * rowHeight;
+    var dy = (0.5 + getRow(d.descendant.id)) * rowHeight;
+    var vr = 6;
+    var version = d.type.startsWith("version");
+    if (spanVerticalVersioning && verticalRelationship(d)) {
+      if (!version && drawSpanVersions
+        && d.descendant.id in spansMap) dy += dy < ay ? vr : -vr;
+      return "M" + dx + "," + ay + "V" + dy;
+    }
+    if (elbowedRelationships) {
+      if (ay > dy) {
+        if (!version && drawSpanVersions) dy += vr;
+        if (!version && drawSpanVersions
+          && d.ancestor.id in spansMap) ax += ax < dx ? vr : -vr;
+        return "M" + ax + "," + ay + "H" + dx + "V" + dy;
+      }
+      else {
+        if (!version && drawSpanVersions) ay += dy > ay ? vr : -vr;
+        if (!version && drawSpanVersions
+          && d.descendant.id in spansMap) dx += dx < ax ? vr : -vr;
+        return "M" + ax + "," + ay + "V" + dy + "H" + dx;
+      }
+    }
+    else {
+      return "M" + ax + "," + ay + "L" + dx + "," + dy;
+    }
+  };
+
+  const relationshipClass = d => {
+    if (d.type == "version") return "relationship-version"
+    else return "relationship-path";
+  };
+
+  const relationshipSelected = d => {
+    if (selectedObject != null) {
+      if ("name" in selectedObject /* not a version! */) {
+        if (d.ancestor.id == selectedObject.id
+          || d.descendant.id == selectedObject.id) {
+          return true;
+        }
+      }
+      else {
+        if ((d.ancestor.id == selectedObject.id && d.ancestor.timestamp == selectedObject.timestamp)
+          || (d.descendant.id == selectedObject.id && d.descendant.timestamp == selectedObject.timestamp)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  const ancestorOfRelationshipSelected = d => {
+    if (selectedObject != null) {
+      if ("name" in selectedObject /* not a version! */) {
+        if (d.ancestor.id == selectedObject.id) {
+          return true;
+        }
+      }
+      else {
+        if (d.ancestor.id == selectedObject.id && d.ancestor.timestamp == selectedObject.timestamp) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  const descendantOfRelationshipSelected = d => {
+    if (selectedObject != null) {
+      if ("name" in selectedObject /* not a version! */) {
+        if (d.descendant.id == selectedObject.id) {
+          return true;
+        }
+      }
+      else {
+        if (d.descendant.id == selectedObject.id && d.descendant.timestamp == selectedObject.timestamp) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  const relationshipClassExt = (d, isExtraVersion) => {
+  	var s = relationshipSelected(d);
+  	if (!isExtraVersion && !s && drawSpanVersionRelationships
+  	  && d.type.startsWith("version") && d.ancestor.id in spansMap) {
+  	  return "relationship-hidden";
+  	}
+  	var c = isExtraVersion ? "relationship-extra" : relationshipClass(d);
+  	if (!s) return c;
+  	var as = ancestorOfRelationshipSelected(d);
+  	var ds = descendantOfRelationshipSelected(d);
+  	if (as && ds) return c + " relationship-selected-internal";
+  	if (as) return c + " relationship-selected-descendants";
+  	return c + " relationship-selected-ancestors";
+  };
+
+  const relationshipMarker = (d, reversed=false) => {
+    if (d.type.startsWith("version")) return null;
+    var as = ancestorOfRelationshipSelected(d);
+  	var ds = descendantOfRelationshipSelected(d);
+    var c = "url(#arrowhead";
+    if (reversed) c += "-reversed";
+    if (as && ds) c += "-selected-internal";
+    else if (as) c += "-selected-descendants";
+    else if (ds) c += "-selected-ancestors";
+    return c + ")";
+  };
+
+  relationshipsArea.selectAll("g")
+    .data(relationships, d => {
+      return d.ancestor.id + d.ancestor.timestamp
+        + d.descendant.id + d.descendant.timestamp
+        + d.type;
+    })
+    .join(
+      enter => {
+        var r = enter
+          .filter(d => {
+            if (d.type.startsWith("version")) return false;
+            if (!drawControlRelationships && d.type.startsWith("control")) {
+              return false;
+            }
+            return true;
+          })
+		      .append("g");
+        r.append("path")
+          .attr("class", d => relationshipClassExt(d, false))
+          .attr("marker-start", d => relationshipMarker(d, true))
+          .attr("marker-end", d => relationshipMarker(d, false))
+          .attr("d", d => relationshipToPath(d));
+        return r;
+      },
+      update => update.call(update => {
+        update.selectAll(".relationship-path,.relationship-version,.relationship-hidden")
+          .attr("class", d => relationshipClassExt(d, false))
+          .attr("marker-start", d => relationshipMarker(d, true))
+          .attr("marker-end", d => relationshipMarker(d, true))
+          .attr("d", d => relationshipToPath(d));
+      })
+    );
+
+  versionRelationshipsArea.selectAll("g")
+    .data(relationships, d => {
+      return d.ancestor.id + d.ancestor.timestamp
+        + d.descendant.id + d.descendant.timestamp
+        + d.type;
+    })
+    .join(
+      enter => {
+        var r = enter
+          .filter(d => d.type.startsWith("version"))
+          .append("g");
+        r.append("path")
+          .attr("class", d => relationshipClassExt(d, false))
+          .attr("marker-start", d => relationshipMarker(d, true))
+          .attr("marker-end", d => relationshipMarker(d, false))
+          .attr("d", d => relationshipToPath(d));
+        return r;
+      },
+      update => update.call(update => {
+        update.selectAll(".relationship-version,.relationship-hidden")
+          .attr("class", d => relationshipClassExt(d, false))
+          .attr("marker-start", d => relationshipMarker(d, true))
+          .attr("marker-end", d => relationshipMarker(d, true))
+          .attr("d", d => relationshipToPath(d));
+      })
+    );
+
+  if (spanVerticalVersioning) {
+    spanVerticalVersioningAdditionalRelationshipsArea.selectAll("g")
+      .data(relationships, d => {
+        return d.ancestor.id + d.ancestor.timestamp
+          + d.descendant.id + d.descendant.timestamp
+          + d.type;
+      })
+      .join(
+        enter => {
+          var r = enter
+            .filter(d => verticalRelationship(d))
+            .append("g");
+          r.append("path")
+            .attr("class", d => relationshipClassExt(d, true))
+            .attr("d", d => {
+              return "M" + timelineScaleAbsolute(d.ancestor.coordinate)
+                + "," + ((0.5 + getRow(d.ancestor.id)) * rowHeight)
+                + "H" + timelineScaleAbsolute(d.descendant.coordinate);
+            });
+          return r;
+        },
+        update => update.call(update => {
+          update.selectAll(".relationship-extra")
+            .attr("class", d => relationshipClassExt(d, true))
+            .attr("d", d => {
+              return "M" + timelineScaleAbsolute(d.ancestor.coordinate)
+                + "," + ((0.5 + getRow(d.ancestor.id)) * rowHeight)
+                + "H" + timelineScaleAbsolute(d.descendant.coordinate);
+            });
+        })
+      );
+  }
+
+
+  // Artifact Versions
+
+  artifactVersionsArea.selectAll("g")
+    .data(artifactVersions, d => d.id + d.timestamp)
+    .join(
+      enter => enter.append("g")
+                    .attr("transform", function(d, i) {
+                      return "translate(" + timelineScaleAbsolute(d.coordinate)
+                        + "," + (artifactsMap[d.id].row + 0.5) * rowHeight + ")";
+                      })
+                    .on("click", d => selectObject(d))
+                    .append("circle")
+                      .attr("cx", "0")
+                      .attr("cy", "0")
+                      .attr("r", "5px"),
+      update => update.call(update => update
+                        .attr("class", d => {
+                          if (selectedObject == null) return null;
+                          if (selectedObject == d) return "artifact-selected";
+                          if (selectedObject.id == d.id && ("name" in selectedObject)) {
+                            return "artifact-selected";
+                          }
+                          return null;
+                        })
+                        .attr("transform", function(d, i) {
+                          return "translate(" + timelineScaleAbsolute(d.coordinate)
+                            + "," + (artifactsMap[d.id].row + 0.5) * rowHeight + ")";
+                          }))
+    );
+
+
+  // Artifact Labels
+
+  artifactsArea.selectAll("g")
+    .data(artifactsSorted, d => d.id)
+    .join(
+      enter => enter.append("g")
+                    .attr("transform", function(d, i) {
+                      return "translate("
+                        + timelineScaleAbsolute(
+                          spanVerticalVersioning ? d.beginCoordinate : d.firstUiCoordinate)
+                        + "," + (d.row + 0.5) * rowHeight + ")";
+                      })
+                    .on("click", d => selectObject(d))
+                    .append("text")
+                      .attr("x", "-.7em")
+                      .attr("dy", ".35em")
+                      //.style("filter", "url(#textBackground)")
+                      .text(d => d.name),
+      update => update.call(update => update
+                        .attr("class", d => {
+                          if (selectedObject == null) return null;
+                          if ("name" in selectedObject /* not a version! */) {
+                            return selectedObject.id == d.id ? "artifact-selected" : null;
+                          }
+                          else {
+                            return null;
+                          }
+                        })
+                        .attr("transform", function(d, i) {
+                          return "translate("
+                            + timelineScaleAbsolute(
+                              spanVerticalVersioning ? d.beginCoordinate : d.firstUiCoordinate)
+                            + "," + (d.row + 0.5) * rowHeight + ")";
+                          }))
+    );
+
+}
+
+
+/****************************************************************************/
+/* START                                                                    */
+/****************************************************************************/
+
+$.ajax({
+  //url: "data/patricia-test.json",
+  //url: "data/ceph-write-only.json",
+  url: "data/ceph-2.json",
+  type: "GET",
+  dataType: "json",
+  success: d => {
+    loadData(d);
+    update();
+  },
+  error: (xhr, status, error) => {
+    console.error(status + " " + error);
+  }
+});
+
+
+</script>

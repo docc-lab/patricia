@@ -1,0 +1,521 @@
+[
+    {
+        "info": {
+            "originator": "pt11",
+            "name": "/tmp/tmpEWd9RJ",
+            "parent": "null",
+            "timestamp": 1555942307207368,
+            "death_time": 0,
+            "creation_time": 1555942301197569,
+            "type": "artifact",
+            "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
+        },
+        "timestamps": [
+            {
+                "timestamp": 1555942301197569
+            },
+            {
+                "timestamp": 1555942307207368
+            }
+        ],
+        "ancestors": [
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942300193273,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942301197569
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942306203801,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942307207368
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942301197569,
+                    "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942307207368
+                }
+            }
+        ],
+        "properties": [],
+        "descendant": [
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942307207368,
+                    "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942301197569
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942303199977,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942301197569
+                }
+            }
+        ]
+    },
+    {
+        "info": {
+            "originator": "pt11",
+            "name": "/tmp/tmpXUJnF2",
+            "parent": "null",
+            "timestamp": 1555942304201424,
+            "death_time": 0,
+            "creation_time": 1555942304201424,
+            "type": "artifact",
+            "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
+        },
+        "timestamps": [
+            {
+                "timestamp": 1555942304201424
+            }
+        ],
+        "ancestors": [
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942303199977,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942304201424
+                }
+            }
+        ],
+        "properties": [],
+        "descendant": [
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942308207819,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942304201424
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942305202653,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942304201424
+                }
+            }
+        ]
+    },
+    {
+        "info": {
+            "originator": "pt11",
+            "name": "Process A",
+            "parent": "null",
+            "timestamp": 1555942310210242,
+            "death_time": 1555942310210242,
+            "creation_time": 1555942300193273,
+            "type": "proc",
+            "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+        },
+        "timestamps": [
+            {
+                "timestamp": 1555942300193273
+            },
+            {
+                "timestamp": 1555942308207819
+            },
+            {
+                "timestamp": 1555942310210242
+            },
+            {
+                "timestamp": 1555942306203801
+            },
+            {
+                "timestamp": 1555942309209101
+            }
+        ],
+        "ancestors": [
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942304201424,
+                    "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942308207819
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942306203801,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control op",
+                "base": {
+                    "timestamp": 1555942308207819
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942309209101,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942310210242
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942305202653,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control op",
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942306205651,
+                    "id": "8ea61361-5b09-3493-8996-e5454d08ae7d"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942309209101
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942308207819,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942309209101
+                }
+            }
+        ],
+        "properties": [],
+        "descendant": [
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942306203801,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942300193273
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942302198809,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control start",
+                "base": {
+                    "timestamp": 1555942300193273
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942301197569,
+                    "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942300193273
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942309209101,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control start",
+                "base": {
+                    "timestamp": 1555942308207819
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942308207819,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942306205651,
+                    "id": "8ea61361-5b09-3493-8996-e5454d08ae7d"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942307207368,
+                    "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942310210242,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control start",
+                "base": {
+                    "timestamp": 1555942309209101
+                }
+            }
+        ]
+    },
+    {
+        "info": {
+            "originator": "pt11",
+            "name": "Process B",
+            "parent": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48",
+            "timestamp": 1555942306203801,
+            "death_time": 1555942306203801,
+            "creation_time": 1555942302198809,
+            "type": "proc",
+            "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+        },
+        "timestamps": [
+            {
+                "timestamp": 1555942302198809
+            },
+            {
+                "timestamp": 1555942303199977
+            },
+            {
+                "timestamp": 1555942305202653
+            },
+            {
+                "timestamp": 1555942306203801
+            }
+        ],
+        "ancestors": [
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942300193273,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control start",
+                "base": {
+                    "timestamp": 1555942302198809
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942301197569,
+                    "id": "9fd24e3e-ca41-3c5f-b311-292c076c3a95"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942302198809,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control start",
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942304201424,
+                    "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942305202653
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942303199977,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942305202653
+                }
+            },
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942305202653,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            }
+        ],
+        "properties": [],
+        "descendant": [
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942303199977,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942302198809
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942305202653,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942304201424,
+                    "id": "71977d20-e337-3c51-bdc1-0ecd1660c35e"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942303199977
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942306203801,
+                    "id": "a0d7a0b9-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control start",
+                "base": {
+                    "timestamp": 1555942305202653
+                }
+            },
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942306203801,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "control op",
+                "base": {
+                    "timestamp": 1555942306203801
+                }
+            }
+        ]
+    },
+    {
+        "info": {
+            "originator": "pt11",
+            "name": "/tmp/tmp1Ga_x5",
+            "parent": "null",
+            "timestamp": 1555942306205651,
+            "death_time": 0,
+            "creation_time": 1555942306205651,
+            "type": "artifact",
+            "id": "8ea61361-5b09-3493-8996-e5454d08ae7d"
+        },
+        "timestamps": [
+            {
+                "timestamp": 1555942306205651
+            }
+        ],
+        "ancestors": [
+            {
+                "direction": "ancestors",
+                "other": {
+                    "timestamp": 1555942306203801,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942306205651
+                }
+            }
+        ],
+        "properties": [],
+        "descendant": [
+            {
+                "direction": "descendants",
+                "other": {
+                    "timestamp": 1555942309209101,
+                    "id": "a0d7a0b8-6529-11e9-834c-5cf3fc3cee48"
+                },
+                "type": "data input",
+                "base": {
+                    "timestamp": 1555942306205651
+                }
+            }
+        ]
+    }
+]
