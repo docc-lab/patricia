@@ -19,7 +19,7 @@ import base64
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-service_name = 'pt10'
+service_name = 'ceph-service'
 
 '''connect to Cassandra'''
 cluster = Cluster()
@@ -45,13 +45,16 @@ pat_object_df.set_index(['trace_id', 'span_id'], inplace=True)
 rows._current_rows.sort(key=lambda tr: tr.start_time)
 
 for tr in rows._current_rows:   #traces_sortby_timestamp.iterrows():
-    if (not pat_object_df.empty) and (pat_object_df['trace_id']==tr['trace_id']) and (pat_object_df['span_id']== tr['span_id']):
+    #if (not pat_object_df.empty) and (pat_object_df['trace_id']==tr['trace_id']) and (pat_object_df['span_id']== tr['span_id']):
+    #    continue;
+
+    if tr.process_service_name != service_name:
         continue;
 
     # create a Patricia object and insert into the Patricia
     print(tr.span_id)
     obj = patricia.create_object(tr.process_service_name, tr.operation_name, 'proc', trace_id=bytearray(tr.trace_id), span_id=tr.span_id, creation_time=long(tr.start_time), death_time=long(tr.start_time) + long(tr.duration))
-    pat_object_df.append({'trace_id': tr.trace_id, 'span_id': tr.span_id, 'object': obj}, ignore_index=True)
+    #pat_object_df.append({'trace_id': tr.trace_id, 'span_id': tr.span_id, 'object': obj}, ignore_index=True)
     
     # link to span end
     print("duration:" + str(long(tr.duration)))
@@ -89,8 +92,10 @@ for tr in rows._current_rows:
                 # get parent object
                 p_obj = patricia.get_trace_object(trace_id=bytearray(ref.trace_id), span_id=ref.span_id)
                 c_obj = patricia.get_trace_object(trace_id=bytearray(tr.trace_id), span_id=tr.span_id)
-                c_obj.add_parent(p_obj);
-                deathtime =  long(tr.start_time) + long(tr.duration)
-                c_obj.control_flow_from(p_obj, type=Patricia.CONTROL_START, timestamp = tr.start_time)
-                #c_obj.data_flow_from(p_obj, type=Patricia.DATA_INPUT, timestamp=tr.start_time)
-                c_obj.control_flow_to(p_obj, type=Patricia.CONTROL_OP, timestamp = deathtime)
+                
+                if p_obj:
+                    c_obj.add_parent(p_obj);
+                    deathtime =  long(tr.start_time) + long(tr.duration)
+                    c_obj.control_flow_from(p_obj, type=Patricia.CONTROL_START, timestamp = tr.start_time)
+                    #c_obj.data_flow_from(p_obj, type=Patricia.DATA_INPUT, timestamp=tr.start_time)
+                    c_obj.control_flow_to(p_obj, type=Patricia.CONTROL_OP, timestamp = deathtime)

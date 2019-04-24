@@ -606,7 +606,7 @@ class patricia_connection:
                     print(query)
                     ret = self.session.execute(query, params);
 		else:
-                    query = """SELECT * from object where originator='{}' and name='{}' and type='{}' ALLOW FILTERIN;""".format(originator, name, otype);
+                    query = """SELECT * from object where originator='{}' and name='{}' and type='{}' ALLOW FILTERING;""".format(str(originator), str(name), str(otype));
                     print(query)
                     ret = self.session.execute(query);
                     if len(ret._current_rows) > 0:
