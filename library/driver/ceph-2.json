@@ -1,30 +1,146 @@
 [
     {
         "info": {
-            "originator": "ceph-services-3", 
-            "name": "/home/maniaa/ceph/dev/osd2/422e1bfaec5139e6b28c4cccac66dc6f", 
-            "parent": "null", 
-            "timestamp": 1556132208501200, 
-            "death_time": 0, 
-            "creation_time": 1556132208501200, 
-            "type": "artifact", 
-            "id": "bfc63e47-82f6-3e96-be2b-5aac4cd76ef7"
+            "originator": "ceph-services-4", 
+            "name": "read permission", 
+            "parent": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134475389230, 
+            "death_time": 1556134475389230, 
+            "creation_time": 1556134475388758, 
+            "type": "proc", 
+            "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132208501200
+                "timestamp": 1556134475388758
+            }, 
+            {
+                "timestamp": 1556134475389230
+            }, 
+            {
+                "timestamp": 1556134475389063
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132208501157, 
-                    "id": "49fa9efe-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475388442, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475388758
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475389063, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475389230
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475388940, 
+                    "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475389063
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475388758, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475389063
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475389063, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475388758
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475388806, 
+                    "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475388758
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475389230, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475389230
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475389230, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475389063
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "/home/maniaa/ceph/dev/osd1/8001dfc3f6c7347d9cb362bedd5f9b01", 
+            "parent": "null", 
+            "timestamp": 1556134463708194, 
+            "death_time": 0, 
+            "creation_time": 1556134463708194, 
+            "type": "artifact", 
+            "id": "0498ff22-3918-391c-b55f-3a3cc0aad51d"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463708194
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463708115, 
+                    "id": "3f11b1c6-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "timestamp": 1556132208501200
+                    "timestamp": 1556134463708194
                 }
             }
         ], 
@@ -33,44 +149,69 @@
     }, 
     {
         "info": {
-            "originator": "ceph-services-3", 
-            "name": "osd 2, write", 
-            "parent": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132208508022, 
-            "death_time": 1556132208508022, 
-            "creation_time": 1556132208501157, 
+            "originator": "ceph-services-4", 
+            "name": "Read data", 
+            "parent": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134475390888, 
+            "death_time": 1556134475390888, 
+            "creation_time": 1556134475390673, 
             "type": "proc", 
-            "id": "49fa9efe-66c4-11e9-834c-5cf3fc3cee48"
+            "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132208501157
+                "timestamp": 1556134475390673
             }, 
             {
-                "timestamp": 1556132208508022
+                "timestamp": 1556134475390888
+            }, 
+            {
+                "timestamp": 1556134475390792
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132208500966, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390424, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208501157
+                    "timestamp": 1556134475390673
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132208501157, 
-                    "id": "49fa9efe-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390792, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390888
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390761, 
+                    "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390792
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390673, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208508022
+                    "timestamp": 1556134475390792
                 }
             }
         ], 
@@ -79,1223 +220,164 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208508022, 
-                    "id": "49fa9efe-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390792, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208501157
+                    "timestamp": 1556134475390673
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208501200, 
-                    "id": "bfc63e47-82f6-3e96-be2b-5aac4cd76ef7"
+                    "timestamp": 1556134475390707, 
+                    "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
-                "type": "data input", 
+                "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208501157
+                    "timestamp": 1556134475390673
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208508022, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390888, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208508022
+                    "timestamp": 1556134475390888
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390888, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390792
                 }
             }
         ]
     }, 
     {
         "info": {
-            "originator": "ceph-services-3", 
-            "name": "/home/maniaa/ceph/dev/osd0/422e1bfaec5139e6b28c4cccac66dc6f", 
-            "parent": "null", 
-            "timestamp": 1556132208501157, 
-            "death_time": 0, 
-            "creation_time": 1556132206315497, 
-            "type": "artifact", 
-            "id": "c661b48f-1286-3d17-84ac-8987ef720c86"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206315497
-            }, 
-            {
-                "timestamp": 1556132208501157
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208501070, 
-                    "id": "49fa9efd-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132208501157
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208501157, 
-                    "id": "c661b48f-1286-3d17-84ac-8987ef720c86"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206315497
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206315497, 
-                    "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206315497
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "/home/maniaa/ceph/dev/osd0/432ed45ed376305dbffea193583991aa", 
-            "parent": "null", 
-            "timestamp": 1556132206316460, 
-            "death_time": 0, 
-            "creation_time": 1556132206316460, 
-            "type": "artifact", 
-            "id": "ef1f9c7f-aed9-34f7-8226-107dc4f9066d"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206316460
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206316345, 
-                    "id": "49fa9ef8-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206316460
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": []
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "osd 0, write", 
-            "parent": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132208505194, 
-            "death_time": 1556132208505194, 
-            "creation_time": 1556132208501070, 
-            "type": "proc", 
-            "id": "49fa9efd-66c4-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132208501070
-            }, 
-            {
-                "timestamp": 1556132208505194
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208500966, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208501070
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208501070, 
-                    "id": "49fa9efd-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208505194
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208505194, 
-                    "id": "49fa9efd-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208501070
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208501157, 
-                    "id": "c661b48f-1286-3d17-84ac-8987ef720c86"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132208501070
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208505194, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208505194
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "writeRequest", 
-            "parent": "null", 
-            "timestamp": 1556132208508229, 
-            "death_time": 1556132208508229, 
-            "creation_time": 1556132206313705, 
-            "type": "proc", 
-            "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206313705
-            }, 
-            {
-                "timestamp": 1556132208508229
-            }, 
-            {
-                "timestamp": 1556132208508195
-            }, 
-            {
-                "timestamp": 1556132208500719
-            }, 
-            {
-                "timestamp": 1556132206315589
-            }, 
-            {
-                "timestamp": 1556132206314444
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208508195, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208508229
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208508022, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208508195
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208500719, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208508195
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208500634, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208500719
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315589, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208500719
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315536, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132206315589
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206314444, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132206315589
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206314274, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132206314444
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206314444, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206313705
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206313990, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206313705
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208508229, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208508195
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208508195, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208500719
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208500966, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208500719
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208500719, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206315589
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206315907, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206315589
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206315589, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206314444
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206315393, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206314444
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "osd 0, write", 
-            "parent": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132208498859, 
-            "death_time": 1556132208498859, 
-            "creation_time": 1556132206316345, 
-            "type": "proc", 
-            "id": "49fa9ef8-66c4-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206316345
-            }, 
-            {
-                "timestamp": 1556132208498859
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315907, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206316345
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206316345, 
-                    "id": "49fa9ef8-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208498859
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208498859, 
-                    "id": "49fa9ef8-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206316345
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206316460, 
-                    "id": "ef1f9c7f-aed9-34f7-8226-107dc4f9066d"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206316345
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208498859, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208498859
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "osd 2, write", 
-            "parent": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132207210818, 
-            "death_time": 1556132207210818, 
-            "creation_time": 1556132206316423, 
-            "type": "proc", 
-            "id": "49fa9ef9-66c4-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206316423
-            }, 
-            {
-                "timestamp": 1556132207210818
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315907, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206316423
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206316423, 
-                    "id": "49fa9ef9-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132207210818
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132207210818, 
-                    "id": "49fa9ef9-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206316423
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206316512, 
-                    "id": "0364ad7e-f9de-3036-a46e-9b9490852291"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206316423
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132207210818, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132207210818
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "/home/maniaa/ceph/dev/osd1/432ed45ed376305dbffea193583991aa", 
-            "parent": "null", 
-            "timestamp": 1556132206316550, 
-            "death_time": 0, 
-            "creation_time": 1556132206316550, 
-            "type": "artifact", 
-            "id": "b9a0ddea-aa98-3d68-b109-4145cabab5bd"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206316550
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206316432, 
-                    "id": "49fa9efa-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206316550
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": []
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "write metadata", 
-            "parent": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132208508195, 
-            "death_time": 1556132208508195, 
-            "creation_time": 1556132208500966, 
-            "type": "proc", 
-            "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132208500966
-            }, 
-            {
-                "timestamp": 1556132208508022
-            }, 
-            {
-                "timestamp": 1556132208505194
-            }, 
-            {
-                "timestamp": 1556132208508195
-            }, 
-            {
-                "timestamp": 1556132208507949
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208500719, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208500966
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208501157, 
-                    "id": "49fa9efe-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208508022
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208507949, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208508022
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208501070, 
-                    "id": "49fa9efd-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208505194
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208500966, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208505194
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208508022, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208508195
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208501065, 
-                    "id": "49fa9efc-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208507949
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208505194, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208507949
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208505194, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208500966
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208501065, 
-                    "id": "49fa9efc-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208500966
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208501070, 
-                    "id": "49fa9efd-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208500966
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208501157, 
-                    "id": "49fa9efe-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208500966
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208508195, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208508022
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208507949, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208505194
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208508195, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208508195
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208508022, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208507949
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "OSD, read", 
-            "parent": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132206314274, 
-            "death_time": 1556132206314274, 
-            "creation_time": 1556132206314035, 
-            "type": "proc", 
-            "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206314035
-            }, 
-            {
-                "timestamp": 1556132206314274
-            }, 
-            {
-                "timestamp": 1556132206314133
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206313990, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206314035
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206314133, 
-                    "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206314274
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206314133, 
-                    "id": "f83c46da-3ae1-371d-9378-700ca5a78351"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206314133
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206314035, 
-                    "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206314133
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206314133, 
-                    "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206314035
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206314274, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132206314274
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206314274, 
-                    "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206314133
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "/home/maniaa/ceph/dev/osd2/432ed45ed376305dbffea193583991aa", 
-            "parent": "null", 
-            "timestamp": 1556132206316512, 
-            "death_time": 0, 
-            "creation_time": 1556132206316512, 
-            "type": "artifact", 
-            "id": "0364ad7e-f9de-3036-a46e-9b9490852291"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206316512
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206316423, 
-                    "id": "49fa9ef9-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206316512
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": []
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "/home/maniaa/ceph/dev/osd1/422e1bfaec5139e6b28c4cccac66dc6f", 
-            "parent": "null", 
-            "timestamp": 1556132208501129, 
-            "death_time": 0, 
-            "creation_time": 1556132208501129, 
-            "type": "artifact", 
-            "id": "5031d2c2-1ae9-3fa6-98c8-ab058a3902c4"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132208501129
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132208501065, 
-                    "id": "49fa9efc-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132208501129
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": []
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
-            "name": "OSD, read", 
-            "parent": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132206315536, 
-            "death_time": 1556132206315536, 
-            "creation_time": 1556132206315430, 
-            "type": "proc", 
-            "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
-        }, 
-        "timestamps": [
-            {
-                "timestamp": 1556132206315430
-            }, 
-            {
-                "timestamp": 1556132206315497
-            }, 
-            {
-                "timestamp": 1556132206315536
-            }
-        ], 
-        "ancestors": [
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315393, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206315430
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315497, 
-                    "id": "c661b48f-1286-3d17-84ac-8987ef720c86"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206315497
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315430, 
-                    "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206315497
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315497, 
-                    "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206315536
-                }
-            }
-        ], 
-        "properties": [], 
-        "descendant": [
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206315497, 
-                    "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "data input", 
-                "base": {
-                    "timestamp": 1556132206315430
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206315536, 
-                    "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132206315497
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132206315536, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132206315536
-                }
-            }
-        ]
-    }, 
-    {
-        "info": {
-            "originator": "ceph-services-3", 
+            "originator": "ceph-services-4", 
             "name": "Write data", 
-            "parent": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132208500719, 
-            "death_time": 1556132208500719, 
-            "creation_time": 1556132206315907, 
+            "parent": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464871750, 
+            "death_time": 1556134464871750, 
+            "creation_time": 1556134463707840, 
             "type": "proc", 
-            "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+            "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132206315907
+                "timestamp": 1556134463707840
             }, 
             {
-                "timestamp": 1556132208498859
+                "timestamp": 1556134464871750
             }, 
             {
-                "timestamp": 1556132207210818
+                "timestamp": 1556134464810348
             }, 
             {
-                "timestamp": 1556132208500719
+                "timestamp": 1556134464871562
             }, 
             {
-                "timestamp": 1556132208500634
+                "timestamp": 1556134464865311
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206315589, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463707511, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315907
+                    "timestamp": 1556134463707840
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206316345, 
-                    "id": "49fa9ef8-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871562, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208498859
+                    "timestamp": 1556134464871750
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132207210818, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463708115, 
+                    "id": "3f11b1c6-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208498859
+                    "timestamp": 1556134464810348
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206316423, 
-                    "id": "49fa9ef9-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132207210818
-                }
-            }, 
-            {
-                "direction": "ancestors", 
-                "other": {
-                    "timestamp": 1556132206315907, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463707840, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132207210818
+                    "timestamp": 1556134464810348
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132208500634, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463708218, 
+                    "id": "3f11b1c8-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208500719
+                    "timestamp": 1556134464871562
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206316432, 
-                    "id": "49fa9efa-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464865311, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208500634
+                    "timestamp": 1556134464871562
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132208498859, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463708169, 
+                    "id": "3f11b1c7-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208500634
+                    "timestamp": 1556134464865311
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464810348, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464865311
                 }
             }
         ], 
@@ -1304,107 +386,769 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132207210818, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464810348, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707840
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463708115, 
+                    "id": "3f11b1c6-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707840
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463708169, 
+                    "id": "3f11b1c7-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707840
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463708218, 
+                    "id": "3f11b1c8-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707840
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464871750, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206315907
+                    "timestamp": 1556134464871750
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206316345, 
-                    "id": "49fa9ef8-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464865311, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315907
+                    "timestamp": 1556134464810348
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206316423, 
-                    "id": "49fa9ef9-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871750, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315907
+                    "timestamp": 1556134464871562
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206316432, 
-                    "id": "49fa9efa-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871562, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315907
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208500634, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208498859
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208498859, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132207210818
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208500719, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control op", 
-                "base": {
-                    "timestamp": 1556132208500719
-                }
-            }, 
-            {
-                "direction": "descendants", 
-                "other": {
-                    "timestamp": 1556132208500719, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
-                }, 
-                "type": "control start", 
-                "base": {
-                    "timestamp": 1556132208500634
+                    "timestamp": 1556134464865311
                 }
             }
         ]
     }, 
     {
         "info": {
-            "originator": "ceph-services-3", 
-            "name": "/home/maniaa/ceph/dev/osd0/4e9537f02bfb3a5f9bff9d652f46f421", 
-            "parent": "null", 
-            "timestamp": 1556132206314133, 
-            "death_time": 0, 
-            "creation_time": 1556132206314133, 
-            "type": "artifact", 
-            "id": "f83c46da-3ae1-371d-9378-700ca5a78351"
+            "originator": "ceph-services-4", 
+            "name": "osd 0, write", 
+            "parent": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464878155, 
+            "death_time": 1556134464878155, 
+            "creation_time": 1556134464871946, 
+            "type": "proc", 
+            "id": "3f11b1cb-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132206314133
+                "timestamp": 1556134464871946
+            }, 
+            {
+                "timestamp": 1556134464878155
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871819, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871946
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871946, 
+                    "id": "3f11b1cb-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464878155
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878155, 
+                    "id": "3f11b1cb-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871946
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464872029, 
+                    "id": "a4337249-a29b-3db9-9dae-c9e24bb8ffad"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134464871946
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878155, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878155
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "/home/maniaa/ceph/dev/osd0/8001dfc3f6c7347d9cb362bedd5f9b01", 
+            "parent": "null", 
+            "timestamp": 1556134463708284, 
+            "death_time": 0, 
+            "creation_time": 1556134463708284, 
+            "type": "artifact", 
+            "id": "edac4285-3561-3cf6-b2fb-38c6796d5d22"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463708284
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463708169, 
+                    "id": "3f11b1c7-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463708284
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": []
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "osd 1, write", 
+            "parent": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464878117, 
+            "death_time": 1556134464878117, 
+            "creation_time": 1556134464871952, 
+            "type": "proc", 
+            "id": "3f11b1cc-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134464871952
+            }, 
+            {
+                "timestamp": 1556134464878117
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871819, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871952
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871952, 
+                    "id": "3f11b1cc-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464878117
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878117, 
+                    "id": "3f11b1cc-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871952
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464872010, 
+                    "id": "bd7bb6e2-acf5-3013-91d3-1fef1612ae78"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134464871952
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878117, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878117
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "read permission", 
+            "parent": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134463706345, 
+            "death_time": 1556134463706345, 
+            "creation_time": 1556134463705883, 
+            "type": "proc", 
+            "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463705883
+            }, 
+            {
+                "timestamp": 1556134463706345
+            }, 
+            {
+                "timestamp": 1556134463706175
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463705540, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463705883
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706175, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463706345
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706026, 
+                    "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463706175
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463705883, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463706175
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463706175, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463705883
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463705929, 
+                    "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463705883
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463706345, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463706345
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463706345, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463706175
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "/home/maniaa/ceph/dev/osd2/df4c5865452837a7b4b2afd04023aebb", 
+            "parent": "null", 
+            "timestamp": 1556134464871991, 
+            "death_time": 0, 
+            "creation_time": 1556134464871991, 
+            "type": "artifact", 
+            "id": "a1a560ba-d92c-30bc-9908-087dad6c7794"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134464871991
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871930, 
+                    "id": "3f11b1ca-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134464871991
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": []
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "/home/maniaa/ceph/dev/osd0/df4c5865452837a7b4b2afd04023aebb", 
+            "parent": "null", 
+            "timestamp": 1556134464872029, 
+            "death_time": 0, 
+            "creation_time": 1556134463707419, 
+            "type": "artifact", 
+            "id": "a4337249-a29b-3db9-9dae-c9e24bb8ffad"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463707419
+            }, 
+            {
+                "timestamp": 1556134464872029
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871946, 
+                    "id": "3f11b1cb-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134464872029
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464872029, 
+                    "id": "a4337249-a29b-3db9-9dae-c9e24bb8ffad"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463707419
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707419, 
+                    "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463707419
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390334, 
+                    "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134464872029
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "read metadata", 
+            "parent": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134463707511, 
+            "death_time": 1556134463707511, 
+            "creation_time": 1556134463707314, 
+            "type": "proc", 
+            "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463707314
+            }, 
+            {
+                "timestamp": 1556134463707511
+            }, 
+            {
+                "timestamp": 1556134463707456
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706345, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707314
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707456, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463707511
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707419, 
+                    "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463707456
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707314, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707456
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707456, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707314
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707352, 
+                    "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707314
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707511, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463707511
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707511, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707456
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "/home/maniaa/ceph/dev/osd1/df4c5865452837a7b4b2afd04023aebb", 
+            "parent": "null", 
+            "timestamp": 1556134464872010, 
+            "death_time": 0, 
+            "creation_time": 1556134464872010, 
+            "type": "artifact", 
+            "id": "bd7bb6e2-acf5-3013-91d3-1fef1612ae78"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134464872010
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871952, 
+                    "id": "3f11b1cc-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134464872010
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": []
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "OSD, read", 
+            "parent": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134463706175, 
+            "death_time": 1556134463706175, 
+            "creation_time": 1556134463705929, 
+            "type": "proc", 
+            "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463705929
+            }, 
+            {
+                "timestamp": 1556134463706175
+            }, 
+            {
+                "timestamp": 1556134463706026
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463705883, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463705929
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706026, 
+                    "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463706175
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706026, 
+                    "id": "2e9acbae-6251-3a8b-b910-37f8d2147a6f"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463706026
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463705929, 
+                    "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463706026
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463706026, 
+                    "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463705929
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463706175, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463706175
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463706175, 
+                    "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463706026
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "/home/maniaa/ceph/dev/osd0/5f433f0eaa833829aaf8dde7c5c5a09f", 
+            "parent": "null", 
+            "timestamp": 1556134463706026, 
+            "death_time": 0, 
+            "creation_time": 1556134463706026, 
+            "type": "artifact", 
+            "id": "2e9acbae-6251-3a8b-b910-37f8d2147a6f"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463706026
             }
         ], 
         "ancestors": [], 
@@ -1413,56 +1157,67 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206314133, 
-                    "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463706026, 
+                    "id": "3f11b1c2-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "timestamp": 1556132206314133
+                    "timestamp": 1556134463706026
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475388940, 
+                    "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463706026
                 }
             }
         ]
     }, 
     {
         "info": {
-            "originator": "ceph-services-3", 
+            "originator": "ceph-services-4", 
             "name": "osd 1, write", 
-            "parent": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132208500634, 
-            "death_time": 1556132208500634, 
-            "creation_time": 1556132206316432, 
+            "parent": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464810348, 
+            "death_time": 1556134464810348, 
+            "creation_time": 1556134463708115, 
             "type": "proc", 
-            "id": "49fa9efa-66c4-11e9-834c-5cf3fc3cee48"
+            "id": "3f11b1c6-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132206316432
+                "timestamp": 1556134463708115
             }, 
             {
-                "timestamp": 1556132208500634
+                "timestamp": 1556134464810348
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206315907, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463707840, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206316432
+                    "timestamp": 1556134463708115
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206316432, 
-                    "id": "49fa9efa-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463708115, 
+                    "id": "3f11b1c6-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208500634
+                    "timestamp": 1556134464810348
                 }
             }
         ], 
@@ -1471,103 +1226,846 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208500634, 
-                    "id": "49fa9efa-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464810348, 
+                    "id": "3f11b1c6-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206316432
+                    "timestamp": 1556134463708115
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206316550, 
-                    "id": "b9a0ddea-aa98-3d68-b109-4145cabab5bd"
+                    "timestamp": 1556134463708194, 
+                    "id": "0498ff22-3918-391c-b55f-3a3cc0aad51d"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "timestamp": 1556132206316432
+                    "timestamp": 1556134463708115
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208500634, 
-                    "id": "49fa9ef7-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464810348, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208500634
+                    "timestamp": 1556134464810348
                 }
             }
         ]
     }, 
     {
         "info": {
-            "originator": "ceph-services-3", 
+            "originator": "ceph-services-4", 
+            "name": "writeRequest", 
+            "parent": "null", 
+            "timestamp": 1556134464878393, 
+            "death_time": 1556134464878393, 
+            "creation_time": 1556134463705540, 
+            "type": "proc", 
+            "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463705540
+            }, 
+            {
+                "timestamp": 1556134464871750
+            }, 
+            {
+                "timestamp": 1556134463706345
+            }, 
+            {
+                "timestamp": 1556134463707511
+            }, 
+            {
+                "timestamp": 1556134464878393
+            }, 
+            {
+                "timestamp": 1556134464878234
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871562, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464871750
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707511, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464871750
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706175, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463706345
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707456, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463707511
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706345, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463707511
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464878234, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878393
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464878155, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878234
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871750, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878234
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463706345, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463705540
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463705883, 
+                    "id": "3f11b1c1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463705540
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878234, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871750
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464871819, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871750
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707511, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463706345
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707314, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463706345
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464871750, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463707511
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707840, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707511
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878393, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464878234
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "OSD, read", 
+            "parent": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134463707456, 
+            "death_time": 1556134463707456, 
+            "creation_time": 1556134463707352, 
+            "type": "proc", 
+            "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463707352
+            }, 
+            {
+                "timestamp": 1556134463707419
+            }, 
+            {
+                "timestamp": 1556134463707456
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707314, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707352
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707419, 
+                    "id": "a4337249-a29b-3db9-9dae-c9e24bb8ffad"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463707419
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707352, 
+                    "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707419
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707419, 
+                    "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463707456
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707419, 
+                    "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463707352
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707456, 
+                    "id": "3f11b1c4-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463707419
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463707456, 
+                    "id": "3f11b1c3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134463707456
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "OSD, read", 
+            "parent": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134475389063, 
+            "death_time": 1556134475389063, 
+            "creation_time": 1556134475388806, 
+            "type": "proc", 
+            "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134475388806
+            }, 
+            {
+                "timestamp": 1556134475388940
+            }, 
+            {
+                "timestamp": 1556134475389063
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475388758, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475388806
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463706026, 
+                    "id": "2e9acbae-6251-3a8b-b910-37f8d2147a6f"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475388940
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475388806, 
+                    "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475388940
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475388940, 
+                    "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475389063
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475388940, 
+                    "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475388806
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475389063, 
+                    "id": "3f11b1cf-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475388940
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475389063, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475389063
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "/home/maniaa/ceph/dev/osd2/8001dfc3f6c7347d9cb362bedd5f9b01", 
+            "parent": "null", 
+            "timestamp": 1556134463708326, 
+            "death_time": 0, 
+            "creation_time": 1556134463708326, 
+            "type": "artifact", 
+            "id": "9ab523bf-08eb-3c50-8394-68def0ecbdd0"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463708326
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463708218, 
+                    "id": "3f11b1c8-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463708326
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390761, 
+                    "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463708326
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "osd 2, write", 
+            "parent": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464871562, 
+            "death_time": 1556134464871562, 
+            "creation_time": 1556134463708218, 
+            "type": "proc", 
+            "id": "3f11b1c8-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134463708218
+            }, 
+            {
+                "timestamp": 1556134464871562
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463707840, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463708218
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463708218, 
+                    "id": "3f11b1c8-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871562
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464871562, 
+                    "id": "3f11b1c8-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134463708218
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134463708326, 
+                    "id": "9ab523bf-08eb-3c50-8394-68def0ecbdd0"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134463708218
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464871562, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464871562
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "osd 2, write", 
+            "parent": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464876961, 
+            "death_time": 1556134464876961, 
+            "creation_time": 1556134464871930, 
+            "type": "proc", 
+            "id": "3f11b1ca-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134464871930
+            }, 
+            {
+                "timestamp": 1556134464876961
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871819, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871930
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871930, 
+                    "id": "3f11b1ca-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464876961
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464876961, 
+                    "id": "3f11b1ca-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871930
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464871991, 
+                    "id": "a1a560ba-d92c-30bc-9908-087dad6c7794"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134464871930
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464876961, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464876961
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "OSD, read", 
+            "parent": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134475390371, 
+            "death_time": 1556134475390371, 
+            "creation_time": 1556134475390265, 
+            "type": "proc", 
+            "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134475390265
+            }, 
+            {
+                "timestamp": 1556134475390334
+            }, 
+            {
+                "timestamp": 1556134475390371
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390225, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390265
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464872029, 
+                    "id": "a4337249-a29b-3db9-9dae-c9e24bb8ffad"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475390334
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390265, 
+                    "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390334
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390334, 
+                    "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475390371
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390334, 
+                    "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475390265
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390371, 
+                    "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390334
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390371, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390371
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
             "name": "read metadata", 
-            "parent": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132206315589, 
-            "death_time": 1556132206315589, 
-            "creation_time": 1556132206315393, 
+            "parent": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134475390424, 
+            "death_time": 1556134475390424, 
+            "creation_time": 1556134475390225, 
             "type": "proc", 
-            "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
+            "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132206315393
+                "timestamp": 1556134475390225
             }, 
             {
-                "timestamp": 1556132206315536
+                "timestamp": 1556134475390371
             }, 
             {
-                "timestamp": 1556132206315589
+                "timestamp": 1556134475390424
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206314444, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475389230, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315393
+                    "timestamp": 1556134475390225
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206315497, 
-                    "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390334, 
+                    "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206315536
+                    "timestamp": 1556134475390371
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206315393, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390225, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315536
+                    "timestamp": 1556134475390371
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206315536, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390371, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206315589
+                    "timestamp": 1556134475390424
                 }
             }
         ], 
@@ -1576,114 +2074,164 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206315536, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390371, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206315393
+                    "timestamp": 1556134475390225
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206315430, 
-                    "id": "49fa9ef6-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390265, 
+                    "id": "3f11b1d1-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315393
+                    "timestamp": 1556134475390225
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206315589, 
-                    "id": "49fa9ef5-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390424, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206315536
+                    "timestamp": 1556134475390371
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206315589, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134475390424, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206315589
+                    "timestamp": 1556134475390424
                 }
             }
         ]
     }, 
     {
         "info": {
-            "originator": "ceph-services-3", 
-            "name": "read permission", 
-            "parent": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132206314444, 
-            "death_time": 1556132206314444, 
-            "creation_time": 1556132206313990, 
+            "originator": "ceph-services-4", 
+            "name": "write metadata", 
+            "parent": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464878234, 
+            "death_time": 1556134464878234, 
+            "creation_time": 1556134464871819, 
             "type": "proc", 
-            "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
+            "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132206313990
+                "timestamp": 1556134464871819
             }, 
             {
-                "timestamp": 1556132206314274
+                "timestamp": 1556134464878155
             }, 
             {
-                "timestamp": 1556132206314444
+                "timestamp": 1556134464878117
+            }, 
+            {
+                "timestamp": 1556134464876961
+            }, 
+            {
+                "timestamp": 1556134464878234
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206313705, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871750, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206313990
+                    "timestamp": 1556134464871819
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206314133, 
-                    "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871946, 
+                    "id": "3f11b1cb-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206314274
+                    "timestamp": 1556134464878155
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206313990, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464878117, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878155
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871952, 
+                    "id": "3f11b1cc-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878117
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464876961, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878117
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871930, 
+                    "id": "3f11b1ca-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464876961
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134464871819, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206314274
+                    "timestamp": 1556134464876961
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132206314274, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464878155, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206314444
+                    "timestamp": 1556134464878234
                 }
             }
         ], 
@@ -1692,89 +2240,133 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206314274, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464876961, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206313990
+                    "timestamp": 1556134464871819
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206314035, 
-                    "id": "49fa9ef4-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871930, 
+                    "id": "3f11b1ca-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206313990
+                    "timestamp": 1556134464871819
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206314444, 
-                    "id": "49fa9ef3-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871946, 
+                    "id": "3f11b1cb-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132206314274
+                    "timestamp": 1556134464871819
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132206314444, 
-                    "id": "49fa9ef2-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464871952, 
+                    "id": "3f11b1cc-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464871819
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878234, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134464878155
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878155, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132206314444
+                    "timestamp": 1556134464878117
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878117, 
+                    "id": "3f11b1c9-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464876961
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134464878234, 
+                    "id": "3f11b1c0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134464878234
                 }
             }
         ]
     }, 
     {
         "info": {
-            "originator": "ceph-services-3", 
-            "name": "osd 1, write", 
-            "parent": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48", 
-            "timestamp": 1556132208507949, 
-            "death_time": 1556132208507949, 
-            "creation_time": 1556132208501065, 
+            "originator": "ceph-services-4", 
+            "name": "osd 0, write", 
+            "parent": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134464865311, 
+            "death_time": 1556134464865311, 
+            "creation_time": 1556134463708169, 
             "type": "proc", 
-            "id": "49fa9efc-66c4-11e9-834c-5cf3fc3cee48"
+            "id": "3f11b1c7-66c8-11e9-834c-5cf3fc3cee48"
         }, 
         "timestamps": [
             {
-                "timestamp": 1556132208501065
+                "timestamp": 1556134463708169
             }, 
             {
-                "timestamp": 1556132208507949
+                "timestamp": 1556134464865311
             }
         ], 
         "ancestors": [
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132208500966, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463707840, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208501065
+                    "timestamp": 1556134463708169
                 }
             }, 
             {
                 "direction": "ancestors", 
                 "other": {
-                    "timestamp": 1556132208501065, 
-                    "id": "49fa9efc-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134463708169, 
+                    "id": "3f11b1c7-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208507949
+                    "timestamp": 1556134464865311
                 }
             }
         ], 
@@ -1783,34 +2375,316 @@
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208507949, 
-                    "id": "49fa9efc-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464865311, 
+                    "id": "3f11b1c7-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control start", 
                 "base": {
-                    "timestamp": 1556132208501065
+                    "timestamp": 1556134463708169
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208501129, 
-                    "id": "5031d2c2-1ae9-3fa6-98c8-ab058a3902c4"
+                    "timestamp": 1556134463708284, 
+                    "id": "edac4285-3561-3cf6-b2fb-38c6796d5d22"
                 }, 
                 "type": "data input", 
                 "base": {
-                    "timestamp": 1556132208501065
+                    "timestamp": 1556134463708169
                 }
             }, 
             {
                 "direction": "descendants", 
                 "other": {
-                    "timestamp": 1556132208507949, 
-                    "id": "49fa9efb-66c4-11e9-834c-5cf3fc3cee48"
+                    "timestamp": 1556134464865311, 
+                    "id": "3f11b1c5-66c8-11e9-834c-5cf3fc3cee48"
                 }, 
                 "type": "control op", 
                 "base": {
-                    "timestamp": 1556132208507949
+                    "timestamp": 1556134464865311
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "OSD, read", 
+            "parent": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48", 
+            "timestamp": 1556134475390792, 
+            "death_time": 1556134475390792, 
+            "creation_time": 1556134475390707, 
+            "type": "proc", 
+            "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134475390707
+            }, 
+            {
+                "timestamp": 1556134475390761
+            }, 
+            {
+                "timestamp": 1556134475390792
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390673, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390707
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134463708326, 
+                    "id": "9ab523bf-08eb-3c50-8394-68def0ecbdd0"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475390761
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390707, 
+                    "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390761
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390761, 
+                    "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475390792
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390761, 
+                    "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "data input", 
+                "base": {
+                    "timestamp": 1556134475390707
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390792, 
+                    "id": "3f11b1d3-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390761
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390792, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390792
+                }
+            }
+        ]
+    }, 
+    {
+        "info": {
+            "originator": "ceph-services-4", 
+            "name": "readRequest", 
+            "parent": "null", 
+            "timestamp": 1556134475391116, 
+            "death_time": 1556134475391116, 
+            "creation_time": 1556134475388442, 
+            "type": "proc", 
+            "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+        }, 
+        "timestamps": [
+            {
+                "timestamp": 1556134475388442
+            }, 
+            {
+                "timestamp": 1556134475389230
+            }, 
+            {
+                "timestamp": 1556134475390888
+            }, 
+            {
+                "timestamp": 1556134475390424
+            }, 
+            {
+                "timestamp": 1556134475391116
+            }
+        ], 
+        "ancestors": [
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475389063, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475389230
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390792, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390888
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390424, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390888
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390371, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390424
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475389230, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390424
+                }
+            }, 
+            {
+                "direction": "ancestors", 
+                "other": {
+                    "timestamp": 1556134475390888, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475391116
+                }
+            }
+        ], 
+        "properties": [], 
+        "descendant": [
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475389230, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475388442
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475388758, 
+                    "id": "3f11b1ce-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475388442
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390424, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475389230
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390225, 
+                    "id": "3f11b1d0-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475389230
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475391116, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390888
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390888, 
+                    "id": "3f11b1cd-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control op", 
+                "base": {
+                    "timestamp": 1556134475390424
+                }
+            }, 
+            {
+                "direction": "descendants", 
+                "other": {
+                    "timestamp": 1556134475390673, 
+                    "id": "3f11b1d2-66c8-11e9-834c-5cf3fc3cee48"
+                }, 
+                "type": "control start", 
+                "base": {
+                    "timestamp": 1556134475390424
                 }
             }
         ]

@@ -19,7 +19,7 @@ import base64
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-service_name = 'ceph-services-3'
+service_name = 'ceph-services-4'
 
 '''connect to Cassandra'''
 cluster = Cluster()
