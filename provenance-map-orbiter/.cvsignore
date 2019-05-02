@@ -1,0 +1,9 @@
+.classpath
+.externalToolBuilders
+.project
+.DS_Store
+.hg
+*.bbprojectd
+*.swp
+bin
+dist
