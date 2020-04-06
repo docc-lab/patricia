@@ -1,0 +1,6 @@
+---
+- hosts: ceph-cluster
+  remote_user: root
+  tasks:
+    - name: create ansible user for managing host
+      user: name=maniaa comment="Delete Mania Abdi" state=absent

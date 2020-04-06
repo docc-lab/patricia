@@ -1,0 +1,40 @@
+---
+- hosts: ceph-cluster
+  become: yes
+  tasks:
+    - name: install the latest version of ntp
+      yum:
+        name: ntp
+        state: latest
+
+    - name: install the latest version of ntpdate
+      yum:
+        name: ntpdate
+        state: latest
+
+    - name: install the latest version of ntp-doc
+      yum:
+        name: ntp-doc
+        state: latest
+
+    - name: setup ntp
+      command: ntpdate 0.us.pool.ntp.org
+
+    - name: sync clock
+      command: hwclock --systohc
+
+    - name: enable ntpd
+      service:
+        name: ntpd
+        enabled: yes
+
+    - name: start ntpd
+      service:
+         name: ntpd
+         state: started
+
+#    - name: disable selinux
+#      command: sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+
+#    - name: setup ssh config on ceph-admin
+#      command: chmod 644 ~/.ssh/config

@@ -1,0 +1,13 @@
+---
+- hosts: ceph-cluster
+  remote_user: root
+  tasks:
+    - name: create maniaa user for managing host
+      user: name=maniaa comment="Mania Abdi is the new user"
+
+    - name: give maniaa user sudo rights
+      lineinfile: dest=/etc/sudoers
+                  state=present
+                  regexp='^maniaa ALL\='
+                  line='maniaa ALL=(ALL) NOPASSWD:ALL'
+                  validate='visudo -cf %s'

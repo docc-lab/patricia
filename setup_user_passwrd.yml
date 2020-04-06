@@ -1,0 +1,17 @@
+---
+- hosts: ceph-cluster
+  remote_user: root
+  vars:
+    # created with:
+    # python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
+    password: $6$l18j0HuH5m3HhoQC$l5nTT0FT1xlDjLdMzeAN2ozn2v2z7eGBDQGUFfzaW7t/OkQ4xA9xC8eQojIdxKhPBBTRCG/NE0kEANgEsPdUJ1
+  tasks:
+    - name: update maniaa user for managing host
+      user: name=maniaa comment="Update password for Mania Abdi" password={{password}}
+
+    - name: give maniaa user sudo rights
+      lineinfile: dest=/etc/sudoers
+                  state=present
+                  regexp='^maniaa ALL\='
+                  line='maniaa ALL=(ALL) NOPASSWD:ALL'
+                  validate='visudo -cf %s'

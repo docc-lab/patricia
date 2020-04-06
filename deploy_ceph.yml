@@ -1,0 +1,81 @@
+---
+#- hosts: ceph-cluster
+#  become: yes
+#  tasks:
+#    - name: create /etc/ceph directory 
+#      file:
+#        path: /etc/ceph
+#        state: directory
+#        mode: 0755
+# 
+#    - name: touch the ceph conf file
+#      file:
+#        path: /etc/ceph/ceph.conf
+#        state: touch
+#        mode: "u+rwx,g+rwx,o+rwx"
+#
+#- hosts: cephadmin
+#  tasks:
+#    - name: create cluster unique id know as UUID
+#      command: uuidgen
+#      register: uuid
+
+- hosts: ceph-admin
+  become: yes
+  tasks:
+#    - name: put uuid
+#      lineinfile:
+#        path: "/etc/ceph/ceph.conf"
+#        line: "[global]"
+#
+#    - name: put uuid
+#      lineinfile:
+#        path: "/etc/ceph/ceph.conf"
+#        line: "fsid = {{ hostvars['cflinux11.nane.openenglab.netapp.com']['uuid']['stdout'] }}"
+#
+#    - name: put monitors
+#      lineinfile:
+#        path: "/etc/ceph/ceph.conf"
+#        line: "mon_initial_members = mon1,mon2"
+#
+#    - name: put monitors addresses
+#      lineinfile:
+#        path: "/etc/ceph/ceph.conf"
+#        line: "mon_host = 10.197.103.141,10.197.103.142"
+
+#    - name: create cluster keyring
+#      command: /usr/local/bin/ceph-authtool --create-keyring /tmp/ceph.mon.keyring --gen-key -n mon. --cap mon 'allow *'
+
+#    - name: 
+#      command: /usr/local/bin/ceph-authtool --create-keyring /etc/ceph/ceph.client.admin.keyring --gen-key -n client.admin --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow *' --cap mgr 'allow *'
+   
+#    - name:
+#      command: /usr/local/bin/ceph-authtool --create-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring --gen-key -n client.bootstrap-osd --cap mon 'profile bootstrap-osd'
+
+    - name:
+      command: /usr/local/bin/ceph-authtool /tmp/ceph.mon.keyring --import-keyring /etc/ceph/ceph.client.admin.keyring
+
+    - name:
+      command: /usr/local/bin/ceph-authtool /tmp/ceph.mon.keyring --import-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring
+
+- hosts: ceph-cluster-na
+  become: yes
+  tasks:    
+   - name: Copy ceph.conf
+     tags: sync-push
+     synchronize: 
+       src: "/etc/ceph/ceph.conf"
+       dest: "/etc/ceph/ceph.conf"
+       mode: push
+     delegate_to: ceph-admin
+     register: syncfile
+     with_items:
+       - "/tmp/ceph.conf"
+
+#   - name: Copy ceph admin keyring
+#     synchronize: src=/etc/ceph/ceph.client.admin.keyring dest=/etc/ceph/ceph.client.admin.keyring
+#     delegate_to: ceph-admin
+
+#   - name: Copy OSD bootstrap keyring
+#     synchronize: src=/var/lib/ceph/bootstrap-osd/ceph.keyring dest=/var/lib/ceph/bootstrap-osd/ceph.keyring
+#     delegate_to: ceph-admin

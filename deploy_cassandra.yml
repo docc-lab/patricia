@@ -1,0 +1,79 @@
+---
+- hosts: cassandra-cluster
+  tasks:
+    - name: Check java version
+      shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+      register: java_version
+
+    - debug: msg="{{ java_version.stdout_lines }}"
+
+    - assert:
+        that: 
+          - java_version.stdout | version_compare('1.7', '>=')
+
+    
+    - name: Check Python version
+      shell: python --version 2>&1 | awk '{print $2}' 
+      register: python_version
+
+    - debug: msg="{{ python_version.stdout_lines }}"
+
+    - assert:
+        that:
+          - python_version.stdout | version_compare('2.7.0', '>=') 
+
+
+- hosts: cassandra-cluster
+  become: yes
+  tasks:
+   # - name: Add Cassandra repo 
+   #   file:
+   #     path: /etc/yum.repos.d/cassandra.repo
+   #     state: touch
+   #     mode: "u+rwx,g+rwx,o+rwx"
+   
+   # - name: insert/update "Match User" configuration block in /etc/ssh/sshd_config
+   #   blockinfile:
+   #     path: /etc/yum.repos.d/cassandra.repo
+   #     block: |
+   #       [cassandra]
+   #       name=Apache Cassandra
+   #       baseurl=https://www.apache.org/dist/cassandra/redhat/311x/
+   #       gpgcheck=1
+   #       repo_gpgcheck=1
+   #       gpgkey=https://www.apache.org/dist/cassandra/KEYS
+
+   # - name: upgrade all packages
+   #   yum: name=* state=latest
+
+    #- name: install Cassandra
+    #  yum:
+    #    name: cassandra
+    #   state: latest
+
+    #- name: just force systemd to reread configs (2.4 and above)
+    #  systemd:
+    #   daemon_reload: yes
+
+    #- name: Start Cassandra service
+    #  systemd:
+    #    state: started
+    #    name: cassandra 
+
+    #- name: enable service cassandra and ensure it is not masked
+    #  systemd:
+    #    name: cassandra
+    #    enabled: yes
+    #    masked: no
+
+- hosts: cassandra-cluster
+  tasks:
+    - name: Check Cassandra setup
+      command: nodetool status 2>&1
+      register: nodetool_status
+
+    - debug: msg="{{ nodetool_status.stdout_lines }}"
+
+
+
+

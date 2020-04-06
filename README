@@ -1,0 +1,2 @@
+To copy code there:
+ansible-playbook -i <inventory-file> deploy_authorized_keys.yml --ask-become-pass --ask-pass --extra-vars='pubkey="<pubkey-for-super-user>”’
